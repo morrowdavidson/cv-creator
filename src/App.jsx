@@ -3,20 +3,34 @@ import CvForm from './components/cv-form/cv-form.jsx';
 import CvPrint from './components/cv-print/cv-print.jsx';
 
 function App() {
-    const [firstName, setFirstName] = useState('');
-    const handleFirstNameChange = (name) => {
-        setFirstName(name);
+    const [generalInfo, setGeneralInfo] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+    });
+    
+    const handleGeneralInfoChange = (field, value) => {
+        setGeneralInfo({
+            ...generalInfo,
+            [field]: value,
+        });
     };
 
-    const [lastName, setLastName] = useState('');
-    const handleLastNameChange = (name) => {
-        setLastName(name);
-    };
+    const [educationList, setEducationList] = useState([{ school: '', degree: '', year: '' }]);
 
     return (
     <div>
-      <CvForm onFirstNameChange={handleFirstNameChange} onLastNameChange={handleLastNameChange} />
-      <CvPrint firstName={firstName} lastName={lastName}/>
+      <CvForm 
+        generalInfo={generalInfo}
+        onGeneralInfoChange={handleGeneralInfoChange}
+        educationList={educationList}
+        setEducationList={setEducationList}
+      />
+      <CvPrint 
+        generalInfo={generalInfo}
+        educationList={educationList}
+      />
     </div>
   );
 }
