@@ -18,6 +18,7 @@ function App() {
     };
 
     const [educationList, setEducationList] = useState([{ school: '', degree: '', year: '' }]);
+    const [workList, setWorkList] = useState([{ company: '', title: '', date: '' }]);
 
     return (
     <div>
@@ -26,10 +27,13 @@ function App() {
         onGeneralInfoChange={handleGeneralInfoChange}
         educationList={educationList}
         setEducationList={setEducationList}
+        workList={workList}
+        setWorkList={setWorkList}
       />
       <CvPrint 
         generalInfo={generalInfo}
         educationList={educationList}
+        workList={workList}
       />
     </div>
   );

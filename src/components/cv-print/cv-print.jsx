@@ -1,12 +1,14 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function CvPrint({ generalInfo, educationList }) {
+function CvPrint({ generalInfo, educationList, workList }) {
     return (
         <div>
             <h1>CV</h1>
             <p>{generalInfo.firstName} {generalInfo.lastName}&apos;s CV</p>
             <p>Email: {generalInfo.email}</p>
             <p>Phone: {generalInfo.phone}</p>
+            
             <h2>Education</h2>
             {educationList.map((education, index) => (
                 <div key={index}>
@@ -15,13 +17,40 @@ function CvPrint({ generalInfo, educationList }) {
                     <p>Year: {education.year}</p>
                 </div>
             ))}
+
+            <h2>Work Experience</h2>
+            {workList.map((work, index) => (
+                <div key={index}>
+                    <p>Company: {work.company}</p>
+                    <p>Title: {work.title}</p>
+                    <p>Date: {work.date}</p>
+                </div>
+            ))}
         </div>
     );
 }
 
 CvPrint.propTypes = {
-    generalInfo: PropTypes.object.isRequired,
-    educationList: PropTypes.array.isRequired,
+    generalInfo: PropTypes.shape({
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        phone: PropTypes.string.isRequired,
+    }).isRequired,
+    educationList: PropTypes.arrayOf(
+        PropTypes.shape({
+            school: PropTypes.string.isRequired,
+            degree: PropTypes.string.isRequired,
+            year: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    workList: PropTypes.arrayOf(
+        PropTypes.shape({
+            company: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            date: PropTypes.string.isRequired,
+        })
+    ).isRequired,
 };
 
 export default CvPrint;
