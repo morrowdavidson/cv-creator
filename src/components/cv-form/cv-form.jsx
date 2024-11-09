@@ -2,6 +2,7 @@ import GeneralInfoForm from "./general-info-form";
 import PropTypes from 'prop-types';
 import EducationForm from "./education-form"; 
 import WorkForm from "./work-form";
+import Skills from "./skills-form"
 
 function CvForm({ 
     generalInfo, 
@@ -9,7 +10,9 @@ function CvForm({
     educationList, 
     setEducationList,
     workList,
-    setWorkList    
+    setWorkList,    
+    skillList,
+    setSkillList
 }) {
     return( 
     <>
@@ -19,6 +22,9 @@ function CvForm({
         <EducationForm educationList={educationList} setEducationList={setEducationList} />
         <h2>Work Experience</h2>
         <WorkForm workList={workList} setWorkList={setWorkList}/>
+        <h2>Skills</h2>
+        <Skills skillList={skillList} setSkillList={setSkillList}/>
+
     </>
     );
 }
@@ -30,6 +36,8 @@ CvForm.propTypes = {
     setEducationList: PropTypes.func.isRequired,
     workList: PropTypes.array.isRequired,
     setWorkList: PropTypes.func.isRequired,
+    skillList: PropTypes.array.isRequired,
+    setSkillList:PropTypes.func.isRequired
 };
 
 export default CvForm;

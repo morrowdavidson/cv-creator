@@ -19,7 +19,7 @@ function WorkForm({ workList, setWorkList }) {
     }
 
     return (
-        <div>
+        <>
             {workList.map((work, index) => (
                 <div key={index}>
                     <input
@@ -46,7 +46,7 @@ function WorkForm({ workList, setWorkList }) {
                 </div>
             ))}
             <button type="button" onClick={handleAddWork}>Add Work Experience</button>
-        </div>
+        </>
     );
 }
 

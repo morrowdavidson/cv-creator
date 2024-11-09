@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-function CvPrint({ generalInfo, educationList, workList }) {
+function CvPrint({ generalInfo, educationList, workList, skillList }) {
     return (
         <div>
             <h1>CV</h1>
@@ -26,6 +25,14 @@ function CvPrint({ generalInfo, educationList, workList }) {
                     <p>Date: {work.date}</p>
                 </div>
             ))}
+            <h2>Skills</h2>
+            {skillList.map((skill, index) => (
+                <ul key={index}>
+                    <li>{skill.skill}</li>
+                </ul>
+
+            )
+        )}
         </div>
     );
 }
@@ -49,6 +56,11 @@ CvPrint.propTypes = {
             company: PropTypes.string.isRequired,
             title: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
+        })
+    ).isRequired,
+    skillList: PropTypes.arrayOf(
+        PropTypes.shape({
+            skill: PropTypes.string.isRequired,
         })
     ).isRequired,
 };

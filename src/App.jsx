@@ -25,6 +25,7 @@ function App() {
 
     const [educationList, setEducationList] = useState([{ school: '', degree: '', year: '' }]);
     const [workList, setWorkList] = useState([{ company: '', title: '', date: '' }]);
+    const [skillList, setSkillList] = useState([{skill: ''}])
 
     return (
     <div>
@@ -35,11 +36,15 @@ function App() {
         setEducationList={setEducationList}
         workList={workList}
         setWorkList={setWorkList}
+        skillList={skillList}
+        setSkillList={setSkillList}
       />
       <CvPrint 
         generalInfo={generalInfo}
         educationList={educationList}
         workList={workList}
+        skillList={skillList}
+
       />
     </div>
   );
