@@ -7,9 +7,16 @@ function WorkForm({ workList, setWorkList }) {
         setWorkList(values);
     };
 
-    const handleAddWork = () => {
-        setWorkList([...workList, { company: '', title: '', date: '' }]);
-    };
+    function handleAddWork() {
+        // Create a new work entry
+        const newWork = { company: '', title: '', date: '' };
+    
+        // Create a new array with the existing workList and the new entry
+        const updatedWorkList = [...workList, newWork];
+    
+        // Update the state with the new array
+        setWorkList(updatedWorkList);
+    }
 
     return (
         <div>

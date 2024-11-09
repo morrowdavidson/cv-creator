@@ -7,9 +7,16 @@ function EducationForm({ educationList, setEducationList }) {
         setEducationList(values);
     };
 
-    const handleAddEducation = () => {
-        setEducationList([...educationList, { school: '', degree: '', year: '' }]);
-    };
+    function handleAddEducation() {
+        // Create a new education entry
+        const newEducation = { school: '', degree: '', year: '' };
+    
+        // Create a new array with the existing educationList and the new entry
+        const updatedEducationList = [...educationList, newEducation];
+    
+        // Update the state with the new array
+        setEducationList(updatedEducationList);
+    }
 
     return (
         <div>
