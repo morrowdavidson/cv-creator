@@ -18,6 +18,16 @@ function WorkForm({ workList, setWorkList }) {
         setWorkList(updatedWorkList);
     }
 
+    function handleDeleteWork(index) {
+        // Create a new array without the deleted work
+        const updatedWorkList = workList.filter(function(_, i) {
+            return i !== index;
+        });
+
+        // Update the state with the new array
+        setWorkList(updatedWorkList);
+    }
+
     return (
         <>
             {workList.map((work, index) => (
@@ -43,6 +53,8 @@ function WorkForm({ workList, setWorkList }) {
                         value={work.date}
                         onChange={(event) => handleInputChange(index, event)}
                     />
+                     <button type="button" onClick={() => handleDeleteWork(index)}>Delete</button>
+
                 </div>
             ))}
             <button type="button" onClick={handleAddWork}>Add Work Experience</button>

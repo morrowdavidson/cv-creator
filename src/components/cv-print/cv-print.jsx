@@ -8,31 +8,42 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
             <p>Email: {generalInfo.email}</p>
             <p>Phone: {generalInfo.phone}</p>
             
-            <h2>Education</h2>
-            {educationList.map((education, index) => (
-                <div key={index}>
-                    <p>School: {education.school}</p>
-                    <p>Degree: {education.degree}</p>
-                    <p>Year: {education.year}</p>
-                </div>
-            ))}
+            {educationList.length > 0 && (
+                <>
+                    <h2>Education</h2>
+                    {educationList.map((education, index) => (
+                        <div key={index}>
+                            <p>School: {education.school}</p>
+                            <p>Degree: {education.degree}</p>
+                            <p>Year: {education.year}</p>
+                        </div>
+                    ))}
+                </>
+            )}
 
-            <h2>Work Experience</h2>
-            {workList.map((work, index) => (
-                <div key={index}>
-                    <p>Company: {work.company}</p>
-                    <p>Title: {work.title}</p>
-                    <p>Date: {work.date}</p>
-                </div>
-            ))}
-            <h2>Skills</h2>
-            {skillList.map((skill, index) => (
-                <ul key={index}>
-                    <li>{skill.skill}</li>
-                </ul>
+            {workList.length > 0 && (
+                <>
+                    <h2>Work Experience</h2>
+                    {workList.map((work, index) => (
+                        <div key={index}>
+                            <p>Company: {work.company}</p>
+                            <p>Title: {work.title}</p>
+                            <p>Date: {work.date}</p>
+                        </div>
+                    ))}
+                </>
+            )}
 
-            )
-        )}
+            {skillList.length > 0 && (
+                <>
+                    <h2>Skills</h2>
+                    {skillList.map((skill, index) => (
+                        <ul key={index}>
+                            <li>{skill.skill}</li>
+                        </ul>
+                    ))}
+                </>
+            )}
         </div>
     );
 }

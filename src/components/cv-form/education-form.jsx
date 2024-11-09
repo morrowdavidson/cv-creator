@@ -18,6 +18,16 @@ function EducationForm({ educationList, setEducationList }) {
         setEducationList(updatedEducationList);
     }
 
+    function handleDeleteEducation(index) {
+        // Create a new array without the deleted education
+        const updatedEducationList = educationList.filter(function(_, i) {
+            return i !== index;
+        });
+
+        // Update the state with the new array
+        setEducationList(updatedEducationList);
+    }
+
     return (
         <div>
             {educationList.map((education, index) => (
@@ -43,6 +53,8 @@ function EducationForm({ educationList, setEducationList }) {
                         value={education.year}
                         onChange={(event) => handleInputChange(index, event)}
                     />
+                     <button type="button" onClick={() => handleDeleteEducation(index)}>Delete</button>
+
                 </div>
             ))}
             <button type="button" onClick={handleAddEducation}>Add Education</button>

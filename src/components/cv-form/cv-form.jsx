@@ -18,7 +18,7 @@ function CvForm({
     <>
         <h2>General Information</h2>
         <GeneralInfoForm generalInfo={generalInfo} onGeneralInfoChange={onGeneralInfoChange} />
-        <h2>Education Experience</h2>
+        <h2>Education</h2>
         <EducationForm educationList={educationList} setEducationList={setEducationList} />
         <h2>Work Experience</h2>
         <WorkForm workList={workList} setWorkList={setWorkList}/>
