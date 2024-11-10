@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Form, Fieldset, Label, Input } from './CommonStyles';
 
 function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
   const handleChange = (event) => {
@@ -7,43 +8,52 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
   };
 
   return (
-    <form>
-      <fieldset>
-        <input
+    <Form>
+      <Fieldset>
+        <Label htmlFor="firstName">First Name</Label>
+        <Input
+          id="firstName"
           name="firstName"
           type="text"
-          placeholder="First Name"
           value={generalInfo.firstName}
           onChange={handleChange}
         />
-        <input
+        <Label htmlFor="lastName">Last Name</Label>
+        <Input
+          id="lastName"
           name="lastName"
           type="text"
-          placeholder="Last Name"
           value={generalInfo.lastName}
           onChange={handleChange}
         />
-        <input
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
           name="email"
           type="text"
-          placeholder="Email"
           value={generalInfo.email}
           onChange={handleChange}
         />
-        <input
+        <Label htmlFor="phone">Phone</Label>
+        <Input
+          id="phone"
           name="phone"
           type="text"
-          placeholder="Phone"
           value={generalInfo.phone}
           onChange={handleChange}
         />
-      </fieldset>
-    </form>
+      </Fieldset>
+    </Form>
   );
 }
 
 GeneralInfoForm.propTypes = {
-  generalInfo: PropTypes.object.isRequired,
+  generalInfo: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
+  }).isRequired,
   onGeneralInfoChange: PropTypes.func.isRequired,
 };
 
