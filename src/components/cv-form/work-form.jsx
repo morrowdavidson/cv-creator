@@ -1,70 +1,73 @@
 import PropTypes from 'prop-types';
 
 function WorkForm({ workList, setWorkList }) {
-    const handleInputChange = (index, event) => {
-        const values = [...workList];
-        values[index][event.target.name] = event.target.value;
-        setWorkList(values);
-    };
+  const handleInputChange = (index, event) => {
+    const values = [...workList];
+    values[index][event.target.name] = event.target.value;
+    setWorkList(values);
+  };
 
-    function handleAddWork() {
-        // Create a new work entry
-        const newWork = { company: '', title: '', date: '' };
-    
-        // Create a new array with the existing workList and the new entry
-        const updatedWorkList = [...workList, newWork];
-    
-        // Update the state with the new array
-        setWorkList(updatedWorkList);
-    }
+  function handleAddWork() {
+    // Create a new work entry
+    const newWork = { company: '', title: '', date: '' };
 
-    function handleDeleteWork(index) {
-        // Create a new array without the deleted work
-        const updatedWorkList = workList.filter(function(_, i) {
-            return i !== index;
-        });
+    // Create a new array with the existing workList and the new entry
+    const updatedWorkList = [...workList, newWork];
 
-        // Update the state with the new array
-        setWorkList(updatedWorkList);
-    }
+    // Update the state with the new array
+    setWorkList(updatedWorkList);
+  }
 
-    return (
-        <>
-            {workList.map((work, index) => (
-                <div key={index}>
-                    <input
-                        type="text"
-                        name="company"
-                        placeholder="Company Name"
-                        value={work.company}
-                        onChange={(event) => handleInputChange(index, event)}
-                    />
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="Job Title"
-                        value={work.title}
-                        onChange={(event) => handleInputChange(index, event)}
-                    />
-                    <input
-                        type="text"
-                        name="date"
-                        placeholder="Date of Employment"
-                        value={work.date}
-                        onChange={(event) => handleInputChange(index, event)}
-                    />
-                     <button type="button" onClick={() => handleDeleteWork(index)}>Delete</button>
+  function handleDeleteWork(index) {
+    // Create a new array without the deleted work
+    const updatedWorkList = workList.filter(function (_, i) {
+      return i !== index;
+    });
 
-                </div>
-            ))}
-            <button type="button" onClick={handleAddWork}>Add Work Experience</button>
-        </>
-    );
+    // Update the state with the new array
+    setWorkList(updatedWorkList);
+  }
+
+  return (
+    <>
+      {workList.map((work, index) => (
+        <div key={index}>
+          <input
+            type="text"
+            name="company"
+            placeholder="Company Name"
+            value={work.company}
+            onChange={(event) => handleInputChange(index, event)}
+          />
+          <input
+            type="text"
+            name="title"
+            placeholder="Job Title"
+            value={work.title}
+            onChange={(event) => handleInputChange(index, event)}
+          />
+          <input
+            type="text"
+            name="date"
+            placeholder="Date of Employment"
+            value={work.date}
+            onChange={(event) => handleInputChange(index, event)}
+          />
+          <button type="button" onClick={() => handleDeleteWork(index)}>
+            Delete
+          </button>
+        </div>
+      ))}
+      <button type="button" onClick={handleAddWork}>
+        Add Work Experience
+      </button>
+    </>
+  );
 }
 
 WorkForm.propTypes = {
-    workList: PropTypes.array.isRequired,
-    setWorkList: PropTypes.func.isRequired,
+  workList: PropTypes.array.isRequired,
+  setWorkList: PropTypes.func.isRequired,
 };
 
 export default WorkForm;
