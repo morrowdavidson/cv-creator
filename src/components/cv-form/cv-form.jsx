@@ -16,7 +16,7 @@ function CvForm({
 }) {
   return (
     <>
-      <h2>General Information</h2>
+      <h2>Personal Information</h2>
       <GeneralInfoForm
         generalInfo={generalInfo}
         onGeneralInfoChange={onGeneralInfoChange}

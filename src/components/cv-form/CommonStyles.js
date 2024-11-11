@@ -34,6 +34,20 @@ export const Input = styled.input`
   }
 `;
 
+export const Textarea = styled.textarea`
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+`;
+
 export const Button = styled.button`
   display: block;
   width: 100%;

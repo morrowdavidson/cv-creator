@@ -58,6 +58,13 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
           <Paragraph>Phone: {generalInfo.phone}</Paragraph>
         </Section>
 
+        {generalInfo.aboutMe !== '' && (
+          <Section>
+            <Heading2>About Me</Heading2>
+            <Paragraph>{generalInfo.aboutMe}</Paragraph>
+          </Section>
+        )}
+
         {educationList.length > 0 && (
           <Section>
             <Heading2>Education</Heading2>
@@ -104,6 +111,7 @@ CvPrint.propTypes = {
     fullName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
+    aboutMe: PropTypes.string.isRequired,
   }).isRequired,
   educationList: PropTypes.arrayOf(
     PropTypes.shape({

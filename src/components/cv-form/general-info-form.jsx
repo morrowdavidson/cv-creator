@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { Form, Fieldset, Label, Input } from './CommonStyles';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
   const handleChange = (event) => {
@@ -35,6 +37,14 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
           value={generalInfo.phone}
           onChange={handleChange}
         />
+        <Label htmlFor="aboutMe">About Me</Label>
+        <ReactQuill
+          id="aboutMe"
+          name="aboutMe"
+          value={generalInfo.aboutMe}
+          onChange={handleChange}
+          theme="snow"
+        />
       </Fieldset>
     </Form>
   );
@@ -45,6 +55,7 @@ GeneralInfoForm.propTypes = {
     fullName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
+    aboutMe: PropTypes.string.isRequired,
   }).isRequired,
   onGeneralInfoChange: PropTypes.func.isRequired,
 };
