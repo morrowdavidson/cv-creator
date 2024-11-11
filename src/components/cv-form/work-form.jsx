@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import {
   Form,
   Button,
@@ -9,7 +10,15 @@ import {
   SectionHeader,
 } from './CommonStyles';
 import feather from 'feather-icons';
-import { useEffect } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+// Define custom toolbar options
+const toolbarOptions = [
+  ['bold', 'italic', 'underline'], // toggled buttons
+  [{ list: 'ordered' }, { list: 'bullet' }], // lists
+  ['clean'], // remove formatting button
+];
 
 function WorkForm({ workList, setWorkList }) {
   useEffect(() => {
@@ -22,9 +31,15 @@ function WorkForm({ workList, setWorkList }) {
     setWorkList(values);
   };
 
+  const handleDescriptionChange = (index, value) => {
+    const values = [...workList];
+    values[index].description = value;
+    setWorkList(values);
+  };
+
   function handleAddWork() {
     // Create a new work entry
-    const newWork = { company: '', title: '', date: '' };
+    const newWork = { company: '', title: '', date: '', description: '' };
 
     // Create a new array with the existing workList and the new entry
     const updatedWorkList = [...workList, newWork];
@@ -76,6 +91,13 @@ function WorkForm({ workList, setWorkList }) {
             name="date"
             value={work.date}
             onChange={(event) => handleInputChange(index, event)}
+          />
+          <Label htmlFor={`description-${index}`}>Description</Label>
+          <ReactQuill
+            value={work.description}
+            onChange={(value) => handleDescriptionChange(index, value)}
+            theme="snow"
+            modules={{ toolbar: toolbarOptions }}
           />
         </div>
       ))}
