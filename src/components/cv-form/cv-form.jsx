@@ -1,8 +1,18 @@
-import GeneralInfoForm from './general-info-form';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import GeneralInfoForm from './general-info-form';
 import EducationForm from './education-form';
 import WorkForm from './work-form';
 import Skills from './skills-form';
+import { SectionWrapper } from './CommonStyles';
+
+const Header = styled.h2`
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25em;
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  margin-bottom: 1em;
+`;
 
 function CvForm({
   generalInfo,
@@ -16,20 +26,28 @@ function CvForm({
 }) {
   return (
     <>
-      <h2>Personal Information</h2>
-      <GeneralInfoForm
-        generalInfo={generalInfo}
-        onGeneralInfoChange={onGeneralInfoChange}
-      />
-      <h2>Education</h2>
-      <EducationForm
-        educationList={educationList}
-        setEducationList={setEducationList}
-      />
-      <h2>Work Experience</h2>
-      <WorkForm workList={workList} setWorkList={setWorkList} />
-      <h2>Skills</h2>
-      <Skills skillList={skillList} setSkillList={setSkillList} />
+      <SectionWrapper>
+        <Header>Personal Information</Header>
+        <GeneralInfoForm
+          generalInfo={generalInfo}
+          onGeneralInfoChange={onGeneralInfoChange}
+        />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Header>Education</Header>
+        <EducationForm
+          educationList={educationList}
+          setEducationList={setEducationList}
+        />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Header>Work Experience</Header>
+        <WorkForm workList={workList} setWorkList={setWorkList} />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Header>Skills</Header>
+        <Skills skillList={skillList} setSkillList={setSkillList} />
+      </SectionWrapper>
     </>
   );
 }

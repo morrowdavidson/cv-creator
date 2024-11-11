@@ -54,11 +54,18 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
         <Heading1>{generalInfo.fullName}</Heading1>
 
         <Section>
-          <Paragraph>Email: {generalInfo.email}</Paragraph>
-          <Paragraph>Phone: {generalInfo.phone}</Paragraph>
+          {(generalInfo.email !== '' || generalInfo.phone !== '') && (
+            <Heading2>Contact</Heading2>
+          )}
+          {generalInfo.email !== '' && (
+            <Paragraph>{generalInfo.email}</Paragraph>
+          )}
+          {generalInfo.phone !== '' && (
+            <Paragraph>{generalInfo.phone}</Paragraph>
+          )}
         </Section>
 
-        {generalInfo.aboutMe !== '' && (
+        {generalInfo.aboutMe !== '<p><br></p>' && (
           <Section>
             <Heading2>About Me</Heading2>
             <Paragraph

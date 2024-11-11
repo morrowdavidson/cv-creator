@@ -25,7 +25,14 @@ function App() {
   const [generalInfo, setGeneralInfo] = useState(() => {
     const saved = localStorage.getItem('generalInfo');
     const initialValue = JSON.parse(saved);
-    return initialValue || { fullName: '', email: '', phone: '', aboutMe: '' };
+    return (
+      initialValue || {
+        fullName: '',
+        email: '',
+        phone: '',
+        aboutMe: '<p><br></p>',
+      }
+    );
   });
 
   const [educationList, setEducationList] = useState(() => {

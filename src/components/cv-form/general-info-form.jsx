@@ -17,6 +17,8 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
   };
 
   const handleAboutMeChange = (value) => {
+    console.log(generalInfo.aboutMe);
+
     onGeneralInfoChange('aboutMe', value);
   };
 
