@@ -35,6 +35,22 @@ export const Input = styled.input`
   }
 `;
 
+export const SmallInput = styled.input`
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 16px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+`;
+
 export const Textarea = styled.textarea`
   width: 100%;
   padding: 8px;
@@ -62,7 +78,6 @@ export const SectionWrapper = styled.div`
 
 export const Button = styled.button`
   padding: 5px 10px;
-  margin-top: 10px;
   border: none;
   border-radius: 4px;
   background-color: #007bff;

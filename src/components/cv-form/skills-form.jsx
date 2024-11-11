@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+
+import { Form, Button, SmallInput, Icon, IconButton } from './CommonStyles';
+import feather from 'feather-icons';
 
 function Skills({ skillList, setSkillList }) {
+  useEffect(() => {
+    feather.replace();
+  }, [skillList]);
+
   const handleInputChange = (index, event) => {
     const values = [...skillList];
     values[index][event.target.name] = event.target.value;
@@ -31,22 +39,22 @@ function Skills({ skillList, setSkillList }) {
   return (
     <>
       {skillList.map((skill, index) => (
-        <div key={index}>
-          <input
+        <Form key={index}>
+          <SmallInput
             type="text"
             name="skill"
             placeholder="Skill"
             value={skill.skill}
             onChange={(event) => handleInputChange(index, event)}
           />
-          <button type="button" onClick={() => handleDeleteSkill(index)}>
-            Delete
-          </button>
-        </div>
+          <IconButton type="button" onClick={() => handleDeleteSkill(index)}>
+            <Icon data-feather="trash"></Icon>
+          </IconButton>
+        </Form>
       ))}
-      <button type="button" onClick={handleAddSkill}>
+      <Button type="button" onClick={handleAddSkill}>
         Add Skill
-      </button>
+      </Button>
     </>
   );
 }
