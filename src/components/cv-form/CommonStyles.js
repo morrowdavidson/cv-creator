@@ -59,3 +59,35 @@ export const SectionWrapper = styled.div`
   font-family: 'Roboto', sans-serif;
   margin-bottom: 20px;
 `;
+
+export const Button = styled.button`
+  padding: 5px 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const Icon = styled.i`
+  width: 16px; /* Adjust the width as needed */
+  height: 16px; /* Adjust the height as needed */
+`;

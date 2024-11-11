@@ -41,12 +41,12 @@ function CvForm({
         />
       </SectionWrapper>
       <SectionWrapper>
-        <Header>Work Experience</Header>
-        <WorkForm workList={workList} setWorkList={setWorkList} />
-      </SectionWrapper>
-      <SectionWrapper>
         <Header>Skills</Header>
         <Skills skillList={skillList} setSkillList={setSkillList} />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Header>Work Experience</Header>
+        <WorkForm workList={workList} setWorkList={setWorkList} />
       </SectionWrapper>
     </>
   );
