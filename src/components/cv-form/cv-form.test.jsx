@@ -1,5 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  getAllByLabelText,
+} from '@testing-library/react';
 import CvForm from './cv-form.jsx';
 
 describe('CVForm component', () => {
@@ -151,7 +156,7 @@ describe('CVForm component', () => {
     );
 
     expect(setEducationList).toHaveBeenCalled();
-    expect(getAllByPlaceholderText(/School/i).length).toBe(
+    expect(getAllByLabelText(/School/i).length).toBe(
       mockEducationList.length + 1
     );
   });
