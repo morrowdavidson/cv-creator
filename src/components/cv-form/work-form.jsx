@@ -1,6 +1,21 @@
 import PropTypes from 'prop-types';
+import {
+  Form,
+  Button,
+  Input,
+  Label,
+  Icon,
+  IconButton,
+  SectionHeader,
+} from './CommonStyles';
+import feather from 'feather-icons';
+import { useEffect } from 'react';
 
 function WorkForm({ workList, setWorkList }) {
+  useEffect(() => {
+    feather.replace();
+  }, [workList]);
+
   const handleInputChange = (index, event) => {
     const values = [...workList];
     values[index][event.target.name] = event.target.value;
@@ -29,39 +44,45 @@ function WorkForm({ workList, setWorkList }) {
   }
 
   return (
-    <>
+    <Form>
       {workList.map((work, index) => (
         <div key={index}>
-          <input
+          <SectionHeader>
+            {work.company ? work.company : `Work Experience ${index + 1}`}
+          </SectionHeader>
+          <IconButton type="button" onClick={() => handleDeleteWork(index)}>
+            <Icon data-feather="trash"></Icon>
+          </IconButton>
+          <Label htmlFor={`company-${index}`}>Company Name</Label>
+          <Input
             type="text"
+            id={`company-${index}`}
             name="company"
-            placeholder="Company Name"
             value={work.company}
             onChange={(event) => handleInputChange(index, event)}
           />
-          <input
+          <Label htmlFor={`title-${index}`}>Title</Label>
+          <Input
             type="text"
+            id={`title-${index}`}
             name="title"
-            placeholder="Job Title"
             value={work.title}
             onChange={(event) => handleInputChange(index, event)}
           />
-          <input
+          <Label htmlFor={`date-${index}`}>Date</Label>
+          <Input
             type="text"
+            id={`date-${index}`}
             name="date"
-            placeholder="Date of Employment"
             value={work.date}
             onChange={(event) => handleInputChange(index, event)}
           />
-          <button type="button" onClick={() => handleDeleteWork(index)}>
-            Delete
-          </button>
         </div>
       ))}
-      <button type="button" onClick={handleAddWork}>
+      <Button type="button" onClick={handleAddWork}>
         Add Work Experience
-      </button>
-    </>
+      </Button>
+    </Form>
   );
 }
 

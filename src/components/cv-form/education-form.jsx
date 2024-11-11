@@ -47,16 +47,15 @@ function EducationForm({ educationList, setEducationList }) {
     <Form>
       {educationList.map((education, index) => (
         <div key={index}>
+          <SectionHeader>
+            {education.school ? education.school : `Education #${index + 1}`}
+          </SectionHeader>
           <IconButton
             type="button"
             onClick={() => handleDeleteEducation(index)}
           >
             <Icon data-feather="trash"></Icon>
           </IconButton>
-
-          <SectionHeader>
-            {education.school ? education.school : `Education #${index + 1}`}
-          </SectionHeader>
 
           <Label htmlFor={`school-${index}`}>School</Label>
           <Input
