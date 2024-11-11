@@ -61,7 +61,9 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
         {generalInfo.aboutMe !== '' && (
           <Section>
             <Heading2>About Me</Heading2>
-            <Paragraph>{generalInfo.aboutMe}</Paragraph>
+            <Paragraph
+              dangerouslySetInnerHTML={{ __html: generalInfo.aboutMe }}
+            />
           </Section>
         )}
 

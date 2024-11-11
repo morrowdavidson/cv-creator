@@ -3,10 +3,21 @@ import { Form, Fieldset, Label, Input } from './CommonStyles';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
+// Define custom toolbar options
+const toolbarOptions = [
+  ['bold', 'italic', 'underline'], // toggled buttons
+  [{ list: 'ordered' }, { list: 'bullet' }], // lists
+  ['clean'], // remove formatting button
+];
+
 function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
   const handleChange = (event) => {
     const { name, value } = event.target;
     onGeneralInfoChange(name, value);
+  };
+
+  const handleAboutMeChange = (value) => {
+    onGeneralInfoChange('aboutMe', value);
   };
 
   return (
@@ -40,10 +51,10 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
         <Label htmlFor="aboutMe">About Me</Label>
         <ReactQuill
           id="aboutMe"
-          name="aboutMe"
           value={generalInfo.aboutMe}
-          onChange={handleChange}
+          onChange={handleAboutMeChange}
           theme="snow"
+          modules={{ toolbar: toolbarOptions }}
         />
       </Fieldset>
     </Form>

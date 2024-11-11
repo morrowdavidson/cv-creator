@@ -13,7 +13,7 @@ describe('App component', () => {
   it('renders the General Information heading', () => {
     render(<App />);
     expect(
-      screen.getByRole('heading', { level: 2, name: /General Information/i })
+      screen.getByRole('heading', { level: 2, name: /Personal Information/i })
     ).toBeInTheDocument();
   });
 
