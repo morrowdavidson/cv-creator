@@ -10,6 +10,7 @@ describe('CvPrint component', () => {
       fullName: 'John Doe',
       email: 'john.doe@example.com',
       phone: '123-456-7890',
+      aboutMe: '<p>This is about me</p>',
     };
 
     render(
@@ -25,6 +26,7 @@ describe('CvPrint component', () => {
     expect(screen.getByText(/John Doe/i)).toBeInTheDocument();
     expect(screen.getByText(/john.doe@example.com/i)).toBeInTheDocument();
     expect(screen.getByText(/123-456-7890/i)).toBeInTheDocument();
+    expect(screen.getByText(/This is about me/i)).toBeInTheDocument();
   });
 
   it('displays education list correctly', () => {

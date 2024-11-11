@@ -8,11 +8,13 @@ describe('CVForm component', () => {
       fullName: 'John Doe',
       email: 'john.doe@example.com',
       phone: '123-456-7890',
+      aboutMe: '<p>This is about me</p>',
     };
 
     render(
       <CvForm
         generalInfo={mockGeneralInfo}
+        onGeneralInfoChange={() => {}}
         setGeneralInfo={() => {}}
         educationList={[]}
         setEducationList={() => {}}
@@ -27,6 +29,7 @@ describe('CVForm component', () => {
     expect(screen.getByLabelText(/Full Name/i).value).toBe('John Doe');
     expect(screen.getByLabelText(/Email/i).value).toBe('john.doe@example.com');
     expect(screen.getByLabelText(/Phone/i).value).toBe('123-456-7890');
+    expect(screen.getByText(/This is about me/i)).toBeInTheDocument();
   });
 
   it('has values for education list', () => {
