@@ -33,15 +33,20 @@ const Heading2 = styled.h2`
   padding-bottom: 5px;
 `;
 
-const Paragraph = styled.p`
-  margin: 0 0 10px;
-  font-size: 14px;
-`;
-
 const UnorderedList = styled.ul`
   margin: 0 0 10px;
   padding-left: 20px;
   font-size: 14px;
+`;
+
+const Paragraph = styled.p`
+  margin: 0 0 10px;
+  font-size: 14px;
+  ul {
+    margin: 0 0 10px;
+    padding-left: 20px; /* Remove padding */
+    font-size: 14px;
+  }
 `;
 
 const Section = styled.div`
@@ -58,6 +63,8 @@ const Work = styled.div`
 const MainContent = styled.div`
   display: flex;
 `;
+
+Paragraph.ul = UnorderedList;
 
 function CvPrint({ generalInfo, educationList, workList, skillList }) {
   return (
