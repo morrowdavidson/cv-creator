@@ -5,6 +5,8 @@ const CvPrintContainer = styled.div`
   display: flex;
   justify-content: center;
   padding: 20px;
+  position: sticky;
+  top: 0;
 `;
 
 const CvPrintWrapper = styled.div`
@@ -117,12 +119,16 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
                 <Heading2>Work Experience</Heading2>
                 {workList.map((work, index) => (
                   <div key={index}>
-                    <Paragraph>{work.company}</Paragraph>
+                    <Paragraph>{work.date}</Paragraph>
                     <Paragraph>
-                      {' '}
                       <b>{work.title}</b>
+                      {work.company}
                     </Paragraph>
-                    <Paragraph> {work.date}</Paragraph>
+                    <Paragraph
+                      dangerouslySetInnerHTML={{
+                        __html: work.description,
+                      }}
+                    />
                   </div>
                 ))}
               </Section>

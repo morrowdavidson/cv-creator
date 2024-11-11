@@ -11,9 +11,7 @@ const Container = styled.div`
 
 const FormWrapper = styled.div`
   flex: 1;
-  position: sticky;
   margin-right: 20px;
-  top: 0;
   align-self: flex-start;
 `;
 
