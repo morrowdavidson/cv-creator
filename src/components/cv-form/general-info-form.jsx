@@ -10,22 +10,15 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
   return (
     <Form>
       <Fieldset>
-        <Label htmlFor="firstName">First Name</Label>
+        <Label htmlFor="fullName">Full Name</Label>
         <Input
-          id="firstName"
-          name="firstName"
+          id="fullName"
+          name="fullName"
           type="text"
-          value={generalInfo.firstName}
+          value={generalInfo.fullName}
           onChange={handleChange}
         />
-        <Label htmlFor="lastName">Last Name</Label>
-        <Input
-          id="lastName"
-          name="lastName"
-          type="text"
-          value={generalInfo.lastName}
-          onChange={handleChange}
-        />
+
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -49,8 +42,7 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
 
 GeneralInfoForm.propTypes = {
   generalInfo: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }).isRequired,

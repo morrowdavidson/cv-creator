@@ -5,8 +5,7 @@ import CvForm from './cv-form.jsx';
 describe('CVForm component', () => {
   it('has values for general info', () => {
     const mockGeneralInfo = {
-      firstName: 'John',
-      lastName: 'Doe',
+      fullName: 'John Doe',
       email: 'john.doe@example.com',
       phone: '123-456-7890',
     };
@@ -25,8 +24,7 @@ describe('CVForm component', () => {
     );
 
     // Check general info display
-    expect(screen.getByLabelText(/First Name/i).value).toBe('John');
-    expect(screen.getByLabelText(/Last Name/i).value).toBe('Doe');
+    expect(screen.getByLabelText(/Full Name/i).value).toBe('John Doe');
     expect(screen.getByLabelText(/Email/i).value).toBe('john.doe@example.com');
     expect(screen.getByLabelText(/Phone/i).value).toBe('123-456-7890');
   });

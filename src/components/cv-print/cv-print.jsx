@@ -51,9 +51,7 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
   return (
     <CvPrintContainer>
       <CvPrintWrapper>
-        <Heading1>
-          {generalInfo.firstName} {generalInfo.lastName}
-        </Heading1>
+        <Heading1>{generalInfo.fullName}</Heading1>
 
         <Section>
           <Paragraph>Email: {generalInfo.email}</Paragraph>
@@ -103,8 +101,7 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
 
 CvPrint.propTypes = {
   generalInfo: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
+    fullName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string.isRequired,
   }).isRequired,

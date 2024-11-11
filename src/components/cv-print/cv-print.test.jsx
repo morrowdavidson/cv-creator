@@ -7,8 +7,7 @@ import CvPrint from './cv-print.jsx';
 describe('CvPrint component', () => {
   it('displays general info correctly', () => {
     const mockGeneralInfo = {
-      firstName: 'John',
-      lastName: 'Doe',
+      fullName: 'John Doe',
       email: 'john.doe@example.com',
       phone: '123-456-7890',
     };
