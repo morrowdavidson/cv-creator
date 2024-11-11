@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 function CvPrint({ generalInfo, educationList, workList, skillList }) {
   return (
     <div>
-      <h1>CV</h1>
-      <p>
-        {generalInfo.firstName} {generalInfo.lastName}&apos;s CV
-      </p>
+      <h1>
+        {generalInfo.firstName} {generalInfo.lastName}
+      </h1>
+
       <p>Email: {generalInfo.email}</p>
       <p>Phone: {generalInfo.phone}</p>
 
