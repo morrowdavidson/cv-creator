@@ -91,3 +91,29 @@ export const Icon = styled.i`
   width: 16px; /* Adjust the width as needed */
   height: 16px; /* Adjust the height as needed */
 `;
+
+export const IconButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover ${Icon} {
+    color: #0056b3; /* Change color on hover if needed */
+  }
+`;
+
+export const SectionHeader = styled.h2`
+  margin: 0px;
+  padding: 0px;
+  margin-right: 5px;
+  display: inline;
+  font-size: 1em;
+`;

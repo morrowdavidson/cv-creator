@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import { Form, Button, Input, Icon } from './CommonStyles';
+import {
+  Form,
+  Button,
+  Input,
+  Icon,
+  IconButton,
+  Label,
+  SectionHeader,
+} from './CommonStyles';
 import feather from 'feather-icons';
 
 function EducationForm({ educationList, setEducationList }) {
@@ -39,27 +47,36 @@ function EducationForm({ educationList, setEducationList }) {
     <Form>
       {educationList.map((education, index) => (
         <div key={index}>
-          <Button type="button" onClick={() => handleDeleteEducation(index)}>
+          <SectionHeader>
+            {education.school ? education.school : `Education #${index + 1}`}
+          </SectionHeader>
+          <IconButton
+            type="button"
+            onClick={() => handleDeleteEducation(index)}
+          >
             <Icon data-feather="trash"></Icon>
-          </Button>
+          </IconButton>
+          <Label htmlFor={`school-${index}`}>School</Label>
           <Input
             type="text"
+            id={`school-${index}`}
             name="school"
-            placeholder="School"
             value={education.school}
             onChange={(event) => handleInputChange(index, event)}
           />
+          <Label htmlFor={`degree-${index}`}>Degree</Label>
           <Input
             type="text"
+            id={`degree-${index}`}
             name="degree"
-            placeholder="Degree"
             value={education.degree}
             onChange={(event) => handleInputChange(index, event)}
           />
+          <Label htmlFor={`year-${index}`}>Year</Label>
           <Input
             type="text"
+            id={`year-${index}`}
             name="year"
-            placeholder="Year"
             value={education.year}
             onChange={(event) => handleInputChange(index, event)}
           />
