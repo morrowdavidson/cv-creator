@@ -1,6 +1,25 @@
 import { useState, useEffect } from 'react';
 import CvForm from './components/cv-form/cv-form.jsx';
 import CvPrint from './components/cv-print/cv-print.jsx';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+`;
+
+const FormWrapper = styled.div`
+  flex: 1;
+  position: sticky;
+  margin-right: 20px;
+  top: 0;
+  align-self: flex-start;
+`;
+
+const PrintWrapper = styled.div`
+  flex: 1;
+`;
 
 function App() {
   const [generalInfo, setGeneralInfo] = useState(() => {
@@ -60,24 +79,28 @@ function App() {
   }
 
   return (
-    <div>
-      <CvForm
-        generalInfo={generalInfo}
-        onGeneralInfoChange={handleGeneralInfoChange}
-        educationList={educationList}
-        setEducationList={setEducationList}
-        workList={workList}
-        setWorkList={setWorkList}
-        skillList={skillList}
-        setSkillList={setSkillList}
-      />
-      <CvPrint
-        generalInfo={generalInfo}
-        educationList={educationList}
-        workList={workList}
-        skillList={skillList}
-      />
-    </div>
+    <Container>
+      <FormWrapper>
+        <CvForm
+          generalInfo={generalInfo}
+          onGeneralInfoChange={handleGeneralInfoChange}
+          educationList={educationList}
+          setEducationList={setEducationList}
+          workList={workList}
+          setWorkList={setWorkList}
+          skillList={skillList}
+          setSkillList={setSkillList}
+        />
+      </FormWrapper>
+      <PrintWrapper>
+        <CvPrint
+          generalInfo={generalInfo}
+          educationList={educationList}
+          workList={workList}
+          skillList={skillList}
+        />
+      </PrintWrapper>
+    </Container>
   );
 }
 
