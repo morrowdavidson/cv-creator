@@ -9,6 +9,7 @@ const CvPrintContainer = styled.div`
   padding: 20px;
   position: sticky;
   top: 0;
+  font-family: 'Geist', sans-serif;
 `;
 
 const CvPrintWrapper = styled.div`
@@ -19,20 +20,23 @@ const CvPrintWrapper = styled.div`
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: auto;
-  font-family: Arial, sans-serif;
+  font-family: 'Geist', sans-serif;
+  font-weight: 400;
 `;
 
 const Heading1 = styled.h1`
-  margin-top: 0;
+  margin-top: 50px;
   font-size: 24px;
   text-align: center;
+  font-weight: 500;
 `;
 
 const Heading2 = styled.h2`
   margin-top: 20px;
   font-size: 20px;
-  border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
+  margin-bottom: 0px;
+  font-weight: 500;
 `;
 
 const UnorderedList = styled.ul`
@@ -56,11 +60,12 @@ const Paragraph = styled.p`
 `;
 
 const Section = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const About = styled.div`
   margin: 25px;
+  border-right: solid 1px;
 `;
 
 const Work = styled.div`
@@ -70,21 +75,60 @@ const MainContent = styled.div`
   display: flex;
 `;
 
+const ContactSection = styled.section`
+  background-color: #e3e3e3;
+  margin-left: -45px;
+  padding: 15px;
+  padding-left: 45px;
+`;
+
+const ActionButtons = styled.div`
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+`;
+
+const Button = styled.button`
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {aw
+    background-color: #0056b3;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
 function CvPrint({ generalInfo, educationList, workList, skillList }) {
   const contentRef = useRef();
 
   const handlePrint = useReactToPrint({ contentRef });
   return (
     <>
-      <div>
-        <button onClick={handlePrint}>Print</button>
-      </div>
+      <ActionButtons>
+        <Button onClick={handlePrint}>Print</Button>
+      </ActionButtons>
       <CvPrintContainer>
         <CvPrintWrapper ref={contentRef}>
           <Heading1>{generalInfo.fullName}</Heading1>
           <MainContent>
             <About>
-              <Section>
+              <ContactSection>
                 {(generalInfo.email !== '' || generalInfo.phone !== '') && (
                   <Heading2>Contact</Heading2>
                 )}
@@ -94,7 +138,7 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
                 {generalInfo.phone !== '' && (
                   <Paragraph>{generalInfo.phone}</Paragraph>
                 )}
-              </Section>
+              </ContactSection>
 
               {educationList.length > 0 && (
                 <Section>
