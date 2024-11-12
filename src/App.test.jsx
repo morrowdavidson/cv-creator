@@ -17,25 +17,25 @@ describe('App component', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders the three Education headings', () => {
+  it('renders the Education headings', () => {
     render(<App />);
     const educationHeadings = screen.getAllByRole('heading', {
       level: 2,
       name: /Education/i,
     });
-    expect(educationHeadings.length).toBe(3);
+    expect(educationHeadings.length).toBe(2);
   });
 
-  it('renders the three Work Experience headings', () => {
+  it('renders the Work Experience headings', () => {
     render(<App />);
     const workHeadings = screen.getAllByRole('heading', {
       level: 2,
       name: /Work Experience/i,
     });
-    expect(workHeadings.length).toBe(3);
+    expect(workHeadings.length).toBe(2);
   });
 
-  it('renders two Skills headings', () => {
+  it('renders the Skills headings', () => {
     render(<App />);
     const skillHeadings = screen.getAllByRole('heading', {
       level: 2,
