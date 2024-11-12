@@ -40,11 +40,15 @@ const UnorderedList = styled.ul`
 `;
 
 const Paragraph = styled.p`
-  margin: 0 0 10px;
+  margin: 0 0 5px;
   font-size: 14px;
   ul {
     margin: 0 0 10px;
     padding-left: 20px; /* Remove padding */
+    font-size: 14px;
+  }
+  p {
+    margin: 0 0 5px;
     font-size: 14px;
   }
 `;
