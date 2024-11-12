@@ -1,10 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import {
-  render,
-  screen,
-  fireEvent,
-  getAllByLabelText,
-} from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import CvForm from './cv-form.jsx';
 
 describe('CVForm component', () => {
@@ -122,7 +117,7 @@ describe('CVForm component', () => {
 
     const setEducationList = vi.fn();
 
-    const { getByText, getAllByPlaceholderText, rerender } = render(
+    const { getByText, getAllByLabelText, rerender } = render(
       <CvForm
         generalInfo={{}}
         setGeneralInfo={() => {}}
@@ -169,7 +164,7 @@ describe('CVForm component', () => {
 
     const setWorkList = vi.fn();
 
-    const { getByText, getAllByPlaceholderText, rerender } = render(
+    const { getByText, getAllByLabelText, rerender } = render(
       <CvForm
         generalInfo={{}}
         setGeneralInfo={() => {}}
@@ -203,9 +198,7 @@ describe('CVForm component', () => {
     );
 
     expect(setWorkList).toHaveBeenCalled();
-    expect(getAllByPlaceholderText(/Company/i).length).toBe(
-      mockWorkList.length + 1
-    );
+    expect(getAllByLabelText(/Company/i).length).toBe(mockWorkList.length + 1);
   });
 
   it('adds a new skill entry when "Add Skill" button is clicked', () => {
