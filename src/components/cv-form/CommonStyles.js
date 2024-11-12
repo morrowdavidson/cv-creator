@@ -132,3 +132,7 @@ export const SectionHeader = styled.h2`
   display: inline;
   font-size: 1em;
 `;
+
+export const StyledReactQuill = styled.div`
+  margin-bottom: 25px;
+`;
