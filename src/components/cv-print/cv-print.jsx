@@ -114,6 +114,10 @@ const Button = styled.button`
   }
 `;
 
+const InnerSection = styled.div`
+  margin-bottom: 15px;
+`;
+
 function CvPrint({ generalInfo, educationList, workList, skillList }) {
   const contentRef = useRef();
 
@@ -144,13 +148,13 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
                 <Section>
                   <Heading2>Education</Heading2>
                   {educationList.map((education, index) => (
-                    <div key={index}>
+                    <InnerSection key={index}>
                       <Paragraph>{education.school}</Paragraph>
                       <Paragraph>
                         <b>{education.degree}</b>{' '}
                       </Paragraph>
                       <Paragraph>{education.year}</Paragraph>
-                    </div>
+                    </InnerSection>
                   ))}
                 </Section>
               )}
@@ -180,7 +184,7 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
                 <Section>
                   <Heading2>Work Experience</Heading2>
                   {workList.map((work, index) => (
-                    <div key={index}>
+                    <InnerSection key={index}>
                       <Paragraph>{work.date}</Paragraph>
                       <Paragraph>
                         <b>{work.title}</b>
@@ -191,7 +195,7 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
                           __html: work.description,
                         }}
                       />
-                    </div>
+                    </InnerSection>
                   ))}
                 </Section>
               )}
