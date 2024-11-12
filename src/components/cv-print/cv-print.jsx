@@ -187,7 +187,7 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
                     <InnerSection key={index}>
                       <Paragraph>{work.date}</Paragraph>
                       <Paragraph>
-                        <b>{work.title}</b>
+                        <b>{work.title} </b>
                         {work.company}
                       </Paragraph>
                       <Paragraph
