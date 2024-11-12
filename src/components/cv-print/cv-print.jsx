@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 const CvPrintContainer = styled.div`
   display: flex;
@@ -10,8 +12,8 @@ const CvPrintContainer = styled.div`
 `;
 
 const CvPrintWrapper = styled.div`
-  width: 600px; /* Standard paper width */
-  height: 800px; /* Standard paper height */
+  width: 8in; /* Standard paper width */
+  height: 10in; /* Standard paper height */
   padding: 20px;
   border: 1px solid #ccc;
   background-color: #fff;
@@ -68,86 +70,92 @@ const MainContent = styled.div`
   display: flex;
 `;
 
-Paragraph.ul = UnorderedList;
-
 function CvPrint({ generalInfo, educationList, workList, skillList }) {
+  const contentRef = useRef();
+
+  const handlePrint = useReactToPrint({ contentRef });
   return (
-    <CvPrintContainer>
-      <CvPrintWrapper>
-        <Heading1>{generalInfo.fullName}</Heading1>
-        <MainContent>
-          <About>
-            <Section>
-              {(generalInfo.email !== '' || generalInfo.phone !== '') && (
-                <Heading2>Contact</Heading2>
-              )}
-              {generalInfo.email !== '' && (
-                <Paragraph>{generalInfo.email}</Paragraph>
-              )}
-              {generalInfo.phone !== '' && (
-                <Paragraph>{generalInfo.phone}</Paragraph>
-              )}
-            </Section>
-
-            {educationList.length > 0 && (
+    <>
+      <div>
+        <button onClick={handlePrint}>Print</button>
+      </div>
+      <CvPrintContainer>
+        <CvPrintWrapper ref={contentRef}>
+          <Heading1>{generalInfo.fullName}</Heading1>
+          <MainContent>
+            <About>
               <Section>
-                <Heading2>Education</Heading2>
-                {educationList.map((education, index) => (
-                  <div key={index}>
-                    <Paragraph>{education.school}</Paragraph>
-                    <Paragraph>
-                      <b>{education.degree}</b>{' '}
-                    </Paragraph>
-                    <Paragraph>{education.year}</Paragraph>
-                  </div>
-                ))}
+                {(generalInfo.email !== '' || generalInfo.phone !== '') && (
+                  <Heading2>Contact</Heading2>
+                )}
+                {generalInfo.email !== '' && (
+                  <Paragraph>{generalInfo.email}</Paragraph>
+                )}
+                {generalInfo.phone !== '' && (
+                  <Paragraph>{generalInfo.phone}</Paragraph>
+                )}
               </Section>
-            )}
 
-            {skillList.length > 0 && (
-              <Section>
-                <Heading2>Skills</Heading2>
-                <UnorderedList>
-                  {skillList.map((skill, index) => (
-                    <li key={index}>{skill.skill}</li>
+              {educationList.length > 0 && (
+                <Section>
+                  <Heading2>Education</Heading2>
+                  {educationList.map((education, index) => (
+                    <div key={index}>
+                      <Paragraph>{education.school}</Paragraph>
+                      <Paragraph>
+                        <b>{education.degree}</b>{' '}
+                      </Paragraph>
+                      <Paragraph>{education.year}</Paragraph>
+                    </div>
                   ))}
-                </UnorderedList>
-              </Section>
-            )}
-          </About>
-          <Work>
-            {generalInfo.aboutMe !== '<p><br></p>' && (
-              <Section>
-                <Heading2>About Me</Heading2>
-                <Paragraph
-                  dangerouslySetInnerHTML={{ __html: generalInfo.aboutMe }}
-                />
-              </Section>
-            )}
+                </Section>
+              )}
 
-            {workList.length > 0 && (
-              <Section>
-                <Heading2>Work Experience</Heading2>
-                {workList.map((work, index) => (
-                  <div key={index}>
-                    <Paragraph>{work.date}</Paragraph>
-                    <Paragraph>
-                      <b>{work.title}</b>
-                      {work.company}
-                    </Paragraph>
-                    <Paragraph
-                      dangerouslySetInnerHTML={{
-                        __html: work.description,
-                      }}
-                    />
-                  </div>
-                ))}
-              </Section>
-            )}
-          </Work>
-        </MainContent>
-      </CvPrintWrapper>
-    </CvPrintContainer>
+              {skillList.length > 0 && (
+                <Section>
+                  <Heading2>Skills</Heading2>
+                  <UnorderedList>
+                    {skillList.map((skill, index) => (
+                      <li key={index}>{skill.skill}</li>
+                    ))}
+                  </UnorderedList>
+                </Section>
+              )}
+            </About>
+            <Work>
+              {generalInfo.aboutMe !== '<p><br></p>' && (
+                <Section>
+                  <Heading2>About Me</Heading2>
+                  <Paragraph
+                    dangerouslySetInnerHTML={{ __html: generalInfo.aboutMe }}
+                  />
+                </Section>
+              )}
+
+              {workList.length > 0 && (
+                <Section>
+                  <Heading2>Work Experience</Heading2>
+                  {workList.map((work, index) => (
+                    <div key={index}>
+                      <Paragraph>{work.date}</Paragraph>
+                      <Paragraph>
+                        <b>{work.title}</b>
+                        {work.company}
+                      </Paragraph>
+                      <Paragraph
+                        dangerouslySetInnerHTML={{
+                          __html: work.description,
+                        }}
+                      />
+                    </div>
+                  ))}
+                </Section>
+              )}
+            </Work>
+          </MainContent>
+        </CvPrintWrapper>
+      </CvPrintContainer>
+    </>
   );
 }
 
