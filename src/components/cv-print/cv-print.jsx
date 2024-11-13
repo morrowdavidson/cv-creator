@@ -65,7 +65,7 @@ const Section = styled.div`
 
 const About = styled.div`
   margin: 25px;
-  border-right: solid 1px;
+  border-right: solid 1px #ccc;
 `;
 
 const Work = styled.div`
@@ -76,7 +76,7 @@ const MainContent = styled.div`
 `;
 
 const ContactSection = styled.section`
-  background-color: #e3e3e3;
+  background-color: #f9f9f9;
   margin-left: -45px;
   padding: 15px;
   padding-left: 45px;
@@ -118,6 +118,10 @@ const InnerSection = styled.div`
   margin-bottom: 15px;
 `;
 
+const ForPrinting = styled.div`
+  font-family: 'Geist', sans-serif;
+`;
+
 function CvPrint({ generalInfo, educationList, workList, skillList }) {
   const contentRef = useRef();
 
@@ -128,79 +132,81 @@ function CvPrint({ generalInfo, educationList, workList, skillList }) {
         <Button onClick={handlePrint}>Print</Button>
       </ActionButtons>
       <CvPrintContainer>
-        <CvPrintWrapper ref={contentRef}>
-          <Heading1>{generalInfo.fullName}</Heading1>
-          <MainContent>
-            <About>
-              <ContactSection>
-                {(generalInfo.email !== '' || generalInfo.phone !== '') && (
-                  <Heading2>Contact</Heading2>
-                )}
-                {generalInfo.email !== '' && (
-                  <Paragraph>{generalInfo.email}</Paragraph>
-                )}
-                {generalInfo.phone !== '' && (
-                  <Paragraph>{generalInfo.phone}</Paragraph>
-                )}
-              </ContactSection>
+        <CvPrintWrapper>
+          <ForPrinting ref={contentRef}>
+            <Heading1>{generalInfo.fullName}</Heading1>
+            <MainContent>
+              <About>
+                <ContactSection>
+                  {(generalInfo.email !== '' || generalInfo.phone !== '') && (
+                    <Heading2>Contact</Heading2>
+                  )}
+                  {generalInfo.email !== '' && (
+                    <Paragraph>{generalInfo.email}</Paragraph>
+                  )}
+                  {generalInfo.phone !== '' && (
+                    <Paragraph>{generalInfo.phone}</Paragraph>
+                  )}
+                </ContactSection>
 
-              {educationList.length > 0 && (
-                <Section>
-                  <Heading2>Education</Heading2>
-                  {educationList.map((education, index) => (
-                    <InnerSection key={index}>
-                      <Paragraph>{education.school}</Paragraph>
-                      <Paragraph>
-                        <b>{education.degree}</b>{' '}
-                      </Paragraph>
-                      <Paragraph>{education.year}</Paragraph>
-                    </InnerSection>
-                  ))}
-                </Section>
-              )}
-
-              {skillList.length > 0 && (
-                <Section>
-                  <Heading2>Skills</Heading2>
-                  <UnorderedList>
-                    {skillList.map((skill, index) => (
-                      <li key={index}>{skill.skill}</li>
+                {educationList.length > 0 && (
+                  <Section>
+                    <Heading2>Education</Heading2>
+                    {educationList.map((education, index) => (
+                      <InnerSection key={index}>
+                        <Paragraph>{education.school}</Paragraph>
+                        <Paragraph>
+                          <b>{education.degree}</b>{' '}
+                        </Paragraph>
+                        <Paragraph>{education.year}</Paragraph>
+                      </InnerSection>
                     ))}
-                  </UnorderedList>
-                </Section>
-              )}
-            </About>
-            <Work>
-              {generalInfo.aboutMe !== '<p><br></p>' && (
-                <Section>
-                  <Heading2>About Me</Heading2>
-                  <Paragraph
-                    dangerouslySetInnerHTML={{ __html: generalInfo.aboutMe }}
-                  />
-                </Section>
-              )}
+                  </Section>
+                )}
 
-              {workList.length > 0 && (
-                <Section>
-                  <Heading2>Work Experience</Heading2>
-                  {workList.map((work, index) => (
-                    <InnerSection key={index}>
-                      <Paragraph>{work.date}</Paragraph>
-                      <Paragraph>
-                        <b>{work.title} </b>
-                        {work.company}
-                      </Paragraph>
-                      <Paragraph
-                        dangerouslySetInnerHTML={{
-                          __html: work.description,
-                        }}
-                      />
-                    </InnerSection>
-                  ))}
-                </Section>
-              )}
-            </Work>
-          </MainContent>
+                {skillList.length > 0 && (
+                  <Section>
+                    <Heading2>Skills</Heading2>
+                    <UnorderedList>
+                      {skillList.map((skill, index) => (
+                        <li key={index}>{skill.skill}</li>
+                      ))}
+                    </UnorderedList>
+                  </Section>
+                )}
+              </About>
+              <Work>
+                {generalInfo.aboutMe !== '<p><br></p>' && (
+                  <Section>
+                    <Heading2>About Me</Heading2>
+                    <Paragraph
+                      dangerouslySetInnerHTML={{ __html: generalInfo.aboutMe }}
+                    />
+                  </Section>
+                )}
+
+                {workList.length > 0 && (
+                  <Section>
+                    <Heading2>Work Experience</Heading2>
+                    {workList.map((work, index) => (
+                      <InnerSection key={index}>
+                        <Paragraph>{work.date}</Paragraph>
+                        <Paragraph>
+                          <b>{work.title} </b>
+                          {work.company}
+                        </Paragraph>
+                        <Paragraph
+                          dangerouslySetInnerHTML={{
+                            __html: work.description,
+                          }}
+                        />
+                      </InnerSection>
+                    ))}
+                  </Section>
+                )}
+              </Work>
+            </MainContent>
+          </ForPrinting>
         </CvPrintWrapper>
       </CvPrintContainer>
     </>
