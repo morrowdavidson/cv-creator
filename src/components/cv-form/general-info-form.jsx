@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Form, Fieldset, Label, Input } from './CommonStyles';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -53,7 +52,6 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
           id="aboutMe"
           value={generalInfo.aboutMe}
           onChange={handleAboutMeChange}
-          theme="snow"
           modules={{ toolbar: toolbarOptions }}
         />
       </Fieldset>
