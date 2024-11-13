@@ -5,19 +5,16 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
 `;
 
 const FormWrapper = styled.div`
-  flex: 1;
   margin-right: 20px;
   align-self: flex-start;
 `;
 
-const PrintWrapper = styled.div`
-  flex: 1;
-`;
+const PrintWrapper = styled.div``;
 
 const Button = styled.button`
   padding: 10px 15px;
