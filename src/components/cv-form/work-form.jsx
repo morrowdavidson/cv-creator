@@ -8,7 +8,7 @@ import {
   Icon,
   IconButton,
   SectionHeader,
-  StyledReactQuill,
+  ReactQuillWrapper,
 } from './CommonStyles';
 import feather from 'feather-icons';
 import ReactQuill from 'react-quill';
@@ -94,14 +94,14 @@ function WorkForm({ workList, setWorkList }) {
             onChange={(event) => handleInputChange(index, event)}
           />
           <Label htmlFor={`description-${index}`}>Description</Label>
-          <StyledReactQuill>
+          <ReactQuillWrapper>
             <ReactQuill
               value={work.description}
               onChange={(value) => handleDescriptionChange(index, value)}
               theme="snow"
               modules={{ toolbar: toolbarOptions }}
             />
-          </StyledReactQuill>
+          </ReactQuillWrapper>
         </div>
       ))}
       <Button type="button" onClick={handleAddWork}>

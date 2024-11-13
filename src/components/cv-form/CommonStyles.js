@@ -133,6 +133,13 @@ export const SectionHeader = styled.h2`
   font-size: 1em;
 `;
 
-export const StyledReactQuill = styled.div`
+export const ReactQuillWrapper = styled.div`
   margin-bottom: 25px;
+  .ql-editor {
+    font-family: 'Roboto', sans-serif;
+  }
+  .ql-container {
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+  }
 `;

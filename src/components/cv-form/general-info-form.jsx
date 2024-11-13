@@ -1,5 +1,11 @@
 import PropTypes from 'prop-types';
-import { Form, Fieldset, Label, Input } from './CommonStyles';
+import {
+  Form,
+  Fieldset,
+  Label,
+  Input,
+  ReactQuillWrapper,
+} from './CommonStyles';
 import ReactQuill from 'react-quill';
 
 // Define custom toolbar options
@@ -48,12 +54,14 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
           onChange={handleChange}
         />
         <Label htmlFor="aboutMe">About Me</Label>
-        <ReactQuill
-          id="aboutMe"
-          value={generalInfo.aboutMe}
-          onChange={handleAboutMeChange}
-          modules={{ toolbar: toolbarOptions }}
-        />
+        <ReactQuillWrapper>
+          <ReactQuill
+            id="aboutMe"
+            value={generalInfo.aboutMe}
+            onChange={handleAboutMeChange}
+            modules={{ toolbar: toolbarOptions }}
+          />
+        </ReactQuillWrapper>
       </Fieldset>
     </Form>
   );
