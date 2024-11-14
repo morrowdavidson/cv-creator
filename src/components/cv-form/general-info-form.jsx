@@ -7,6 +7,7 @@ import {
   ReactQuillWrapper,
 } from './CommonStyles';
 import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 
 // Define custom toolbar options
 const toolbarOptions = [
