@@ -24,7 +24,7 @@ const Icon = styled.i`
 
 function CvForm({
   generalInfo,
-  onGeneralInfoChange,
+  setGeneralInfo,
   educationList,
   setEducationList,
   workList,
@@ -45,7 +45,7 @@ function CvForm({
         </Header>
         <GeneralInfoForm
           generalInfo={generalInfo}
-          onGeneralInfoChange={onGeneralInfoChange}
+          setGeneralInfo={setGeneralInfo}
         />
       </SectionWrapper>
       <SectionWrapper>
@@ -81,7 +81,7 @@ function CvForm({
 
 CvForm.propTypes = {
   generalInfo: PropTypes.object.isRequired,
-  onGeneralInfoChange: PropTypes.func.isRequired,
+  setGeneralInfo: PropTypes.func.isRequired,
   educationList: PropTypes.array.isRequired,
   setEducationList: PropTypes.func.isRequired,
   workList: PropTypes.array.isRequired,

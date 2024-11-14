@@ -100,24 +100,6 @@ const dwightInfo = {
 };
 
 function App() {
-  const setDwightInfo = () => {
-    setGeneralInfo(dwightInfo.generalInfo);
-    setEducationList(dwightInfo.educationList);
-    setWorkList(dwightInfo.workList);
-    setSkillList(dwightInfo.skillList);
-  };
-
-  const clearInfo = () => {
-    setGeneralInfo({
-      fullName: dwightInfo.generalInfo.fullName,
-      email: dwightInfo.generalInfo.email,
-      phone: dwightInfo.generalInfo.phone,
-      aboutMe: '<p><br><p>',
-    });
-    setEducationList([]);
-    setWorkList([]);
-    setSkillList([]);
-  };
   const [generalInfo, setGeneralInfo] = useState(() => {
     const saved = localStorage.getItem('generalInfo');
     const initialValue = JSON.parse(saved);
@@ -159,18 +141,24 @@ function App() {
     localStorage.setItem('skillList', JSON.stringify(skillList));
   }, [skillList]);
 
-  function handleGeneralInfoChange(field, value) {
-    // Create a copy of the current generalInfo state
-    const updatedGeneralInfo = {
-      ...generalInfo,
-    };
+  const setDwightInfo = () => {
+    setGeneralInfo(dwightInfo.generalInfo);
+    setEducationList(dwightInfo.educationList);
+    setWorkList(dwightInfo.workList);
+    setSkillList(dwightInfo.skillList);
+  };
 
-    // Update the specific field with the new value
-    updatedGeneralInfo[field] = value;
-
-    // Set the updated generalInfo state
-    setGeneralInfo(updatedGeneralInfo);
-  }
+  const clearInfo = () => {
+    setEducationList([]);
+    setWorkList([]);
+    setSkillList([]);
+    setGeneralInfo({
+      fullName: '',
+      email: '',
+      phone: '',
+      aboutMe: '<p></p>',
+    });
+  };
 
   return (
     <Container>
@@ -179,7 +167,7 @@ function App() {
         <Button onClick={clearInfo}>Clear Resume</Button>
         <CvForm
           generalInfo={generalInfo}
-          onGeneralInfoChange={handleGeneralInfoChange}
+          setGeneralInfo={setGeneralInfo}
           educationList={educationList}
           setEducationList={setEducationList}
           workList={workList}

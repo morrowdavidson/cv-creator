@@ -6,7 +6,7 @@ import {
   Input,
   ReactQuillWrapper,
 } from './CommonStyles';
-import ReactQuill from 'react-quill';
+import ReactQuill from 'react-quill-new';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -15,14 +15,12 @@ const toolbarOptions = [
   ['clean'], // remove formatting button
 ];
 
-function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    onGeneralInfoChange(name, value);
-  };
-
-  const handleAboutMeChange = (value) => {
-    onGeneralInfoChange('aboutMe', value);
+const GeneralInfoForm = ({ generalInfo, setGeneralInfo }) => {
+  const handleChange = (field, value) => {
+    setGeneralInfo((prevGeneralInfo) => ({
+      ...prevGeneralInfo,
+      [field]: value,
+    }));
   };
 
   return (
@@ -34,38 +32,40 @@ function GeneralInfoForm({ generalInfo, onGeneralInfoChange }) {
           name="fullName"
           type="text"
           value={generalInfo.fullName}
-          onChange={handleChange}
+          onChange={(e) => handleChange('fullName', e.target.value)}
         />
 
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           name="email"
-          type="text"
+          type="email"
           value={generalInfo.email}
-          onChange={handleChange}
+          onChange={(e) => handleChange('email', e.target.value)}
         />
+
         <Label htmlFor="phone">Phone</Label>
         <Input
           id="phone"
           name="phone"
-          type="text"
+          type="tel"
           value={generalInfo.phone}
-          onChange={handleChange}
+          onChange={(e) => handleChange('phone', e.target.value)}
         />
+
         <Label htmlFor="aboutMe">About Me</Label>
         <ReactQuillWrapper>
           <ReactQuill
-            id="aboutMe"
             value={generalInfo.aboutMe}
-            onChange={handleAboutMeChange}
+            onChange={(value) => handleChange('aboutMe', value)}
             modules={{ toolbar: toolbarOptions }}
+            theme="snow"
           />
         </ReactQuillWrapper>
       </Fieldset>
     </Form>
   );
-}
+};
 
 GeneralInfoForm.propTypes = {
   generalInfo: PropTypes.shape({
@@ -74,7 +74,7 @@ GeneralInfoForm.propTypes = {
     phone: PropTypes.string.isRequired,
     aboutMe: PropTypes.string.isRequired,
   }).isRequired,
-  onGeneralInfoChange: PropTypes.func.isRequired,
+  setGeneralInfo: PropTypes.func.isRequired,
 };
 
 export default GeneralInfoForm;
