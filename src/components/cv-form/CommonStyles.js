@@ -1,8 +1,11 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  max-width: 400px;
+  width: 400px;
   font-family: 'Roboto', sans-serif;
+  @media (max-width: 850px) {
+    width: 100%;
+  }
 `;
 
 export const Fieldset = styled.fieldset`
