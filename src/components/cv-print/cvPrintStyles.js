@@ -7,6 +7,9 @@ export const CvPrintContainer = styled.div`
   position: sticky;
   top: 0;
   font-family: 'Geist', sans-serif;
+  @media (max-width: 1225px) {
+    padding: 10px;
+  }
 `;
 
 export const CvPrintWrapper = styled.div`
@@ -19,6 +22,11 @@ export const CvPrintWrapper = styled.div`
   overflow: auto;
   font-family: 'Geist', sans-serif;
   font-weight: 400;
+
+  @media (max-width: 1225px) {
+    width: 4.25in;
+    height: 5.5in;
+  }
 `;
 
 export const Heading1 = styled.h1`
@@ -26,6 +34,10 @@ export const Heading1 = styled.h1`
   font-size: 24px;
   text-align: center;
   font-weight: 500;
+  @media (max-width: 1225px) {
+    margin-top: 25px;
+    font-size: 12px;
+  }
 `;
 
 export const Heading2 = styled.h2`
@@ -34,12 +46,22 @@ export const Heading2 = styled.h2`
   padding-bottom: 5px;
   margin-bottom: 0px;
   font-weight: 500;
+  @media (max-width: 1225px) {
+    margin-top: 10px;
+    font-size: 10px;
+    padding-bottom: 2px;
+  }
 `;
 
 export const UnorderedList = styled.ul`
   margin: 0 0 10px;
   padding-left: 20px;
   font-size: 14px;
+  @media (max-width: 1225px) {
+    padding-left: 10px;
+    font-size: 7px;
+    margin: 0 0 5px;
+  }
 `;
 
 export const Paragraph = styled.p`
@@ -48,25 +70,38 @@ export const Paragraph = styled.p`
   ul {
     margin: 0 0 10px;
     padding-left: 20px; /* Remove padding */
-    font-size: 14px;
   }
   p {
     margin: 0 0 5px;
-    font-size: 14px;
+  }
+
+  @media (max-width: 1225px) {
+    padding-left: 10px;
+    font-size: 7px;
+    margin: 0 0 2px;
   }
 `;
 
 export const Section = styled.div`
   margin-bottom: 30px;
+  @media (max-width: 1225px) {
+    margin-bottom: 15px;
+  }
 `;
 
 export const About = styled.div`
   margin: 25px;
   border-right: solid 1px #ccc;
+  @media (max-width: 1225px) {
+    margin: 12px;
+  }
 `;
 
 export const Work = styled.div`
   margin: 25px;
+  @media (max-width: 1225px) {
+    margin: 12px;
+  }
 `;
 export const MainContent = styled.div`
   display: flex;
@@ -83,6 +118,9 @@ export const ActionButtons = styled.div`
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+  @media (max-width: 1225px) {
+    display: none;
+  }
 `;
 
 export const Button = styled.button`
