@@ -6,8 +6,8 @@ import {
   Input,
   ReactQuillWrapper,
 } from './CommonStyles';
-import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 // Define custom toolbar options
 const toolbarOptions = [
