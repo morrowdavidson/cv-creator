@@ -9,6 +9,7 @@ import {
   IconButton,
   SectionHeader,
   ReactQuillWrapper,
+  AddButton,
 } from './CommonStyles';
 import feather from 'feather-icons';
 import ReactQuill from 'react-quill';
@@ -113,9 +114,9 @@ function WorkForm({ workList, setWorkList }) {
           </Accordion>
         </div>
       ))}
-      <Button type="button" onClick={handleAddWork}>
+      <AddButton type="button" onClick={handleAddWork}>
         Add Work Experience
-      </Button>
+      </AddButton>
     </Form>
   );
 }

@@ -8,6 +8,7 @@ import {
   IconButton,
   Label,
   SectionHeader,
+  AddButton,
 } from './CommonStyles';
 import feather from 'feather-icons';
 import Accordion from '../Accordion';
@@ -84,9 +85,9 @@ function EducationForm({ educationList, setEducationList }) {
           </Accordion>
         </div>
       ))}
-      <Button type="button" onClick={handleAddEducation}>
+      <AddButton type="button" onClick={handleAddEducation}>
         Add Education
-      </Button>
+      </AddButton>
     </Form>
   );
 }

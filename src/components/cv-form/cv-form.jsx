@@ -20,6 +20,7 @@ const Icon = styled.i`
   height: 20px; /* Adjust the height as needed */
   margin-bottom: -2px;
   margin-right: 5px;
+  color: #c656fe;
 `;
 
 function CvForm({

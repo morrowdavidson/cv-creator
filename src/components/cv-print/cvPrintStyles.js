@@ -157,7 +157,7 @@ export const Button = styled.button`
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #c656fe;
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 0.75em;
@@ -165,12 +165,12 @@ export const Button = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #a442e3;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(198, 86, 254, 0.5);
   }
 
   &:disabled {

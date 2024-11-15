@@ -39,7 +39,7 @@ export const Input = styled.input`
 `;
 
 export const SmallInput = styled.input`
-  width: 80%;
+  width: 90%;
   padding: 8px;
   margin-bottom: 16px;
   margin-right: 5px;
@@ -83,7 +83,8 @@ export const Button = styled.button`
   padding: 5px 10px;
   border: 1px dotted grey; /* Grey dotted border */
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #c656fe; /* Purple background color */
+
   color: #fff;
   font-family: 'Roboto', sans-serif;
   font-size: 0.75em;
@@ -91,12 +92,39 @@ export const Button = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #a442e3;
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(198, 86, 254, 0.5);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const AddButton = styled.button`
+  padding: 10px 10px;
+  border: 1px dotted #ccc; /* Grey dotted border */
+  border-radius: 4px;
+  color: gray;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+
+  &:hover {
+    background-color: #a442e3;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(198, 86, 254, 0.5);
   }
 
   &:disabled {
@@ -124,7 +152,7 @@ export const IconButton = styled.button`
   }
 
   &:hover ${Icon} {
-    color: #0056b3; /* Change color on hover if needed */
+    color: #a442e3; /* Change color on hover if needed */
   }
 `;
 

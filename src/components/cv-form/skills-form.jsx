@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
-import { Form, Button, SmallInput, Icon, IconButton } from './CommonStyles';
+import { Form, AddButton, SmallInput, Icon, IconButton } from './CommonStyles';
 import feather from 'feather-icons';
 
 function Skills({ skillList, setSkillList }) {
@@ -52,9 +52,9 @@ function Skills({ skillList, setSkillList }) {
           </IconButton>
         </Form>
       ))}
-      <Button type="button" onClick={handleAddSkill}>
+      <AddButton type="button" onClick={handleAddSkill}>
         Add Skill
-      </Button>
+      </AddButton>
     </>
   );
 }
