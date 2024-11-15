@@ -90,6 +90,7 @@ export const Button = styled.button`
   font-size: 0.75em;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin-bottom: 10px;
 
   &:hover {
     background-color: #a442e3;
@@ -103,6 +104,9 @@ export const Button = styled.button`
   &:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+  }
+  svg {
+    margin-bottom: -2px;
   }
 `;
 
