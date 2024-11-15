@@ -4,14 +4,14 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   padding: 20px;
-    @media (max-width: 850px) {
+    @media (max-width: 975px) {
     flex-direction: column;
 `;
 
 export const FormWrapper = styled.div`
   margin-right: 20px;
 
-  @media (max-width: 850px) {
+  @media (max-width: 975px) {
     align-self: center;
   }
 `;
