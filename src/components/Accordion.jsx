@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { Plus, Minus } from 'react-feather';
 
 const AccordionSection = styled.div`
   margin-bottom: 10px;
@@ -20,7 +21,7 @@ const AccordionHeader = styled.div`
   border: 1px solid #ccc;
 
   &:hover {
-    border-color: #007bff;
+    border-color: #c656fe;
   }
 `;
 
@@ -45,7 +46,7 @@ const Accordion = ({ title, children, openState }) => {
     <AccordionSection>
       <AccordionHeader onClick={toggleAccordion}>
         {title}
-        <span>{isOpen ? '-' : '+'}</span>
+        {isOpen ? <Minus size={16} /> : <Plus size={16} />}
       </AccordionHeader>
       <AccordionContent isOpen={isOpen}>{children}</AccordionContent>
     </AccordionSection>
@@ -56,6 +57,10 @@ Accordion.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   openState: PropTypes.bool,
+};
+
+Accordion.defaultProps = {
+  openState: false,
 };
 
 export default Accordion;
