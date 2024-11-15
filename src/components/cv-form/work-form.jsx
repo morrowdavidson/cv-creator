@@ -13,6 +13,7 @@ import {
 import feather from 'feather-icons';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import Accordion from '../Accordion';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -40,7 +41,13 @@ function WorkForm({ workList, setWorkList }) {
 
   function handleAddWork() {
     // Create a new work entry
-    const newWork = { company: '', title: '', date: '', description: '' };
+    const newWork = {
+      company: '',
+      title: '',
+      date: '',
+      description: '',
+      isOpen: true,
+    };
 
     // Create a new array with the existing workList and the new entry
     const updatedWorkList = [...workList, newWork];
@@ -63,45 +70,47 @@ function WorkForm({ workList, setWorkList }) {
     <Form>
       {workList.map((work, index) => (
         <div key={index}>
-          <SectionHeader>
-            {work.company ? work.company : `Work Experience ${index + 1}`}
-          </SectionHeader>
-          <IconButton type="button" onClick={() => handleDeleteWork(index)}>
-            <Icon data-feather="trash"></Icon>
-          </IconButton>
-          <Label htmlFor={`company-${index}`}>Company Name</Label>
-          <Input
-            type="text"
-            id={`company-${index}`}
-            name="company"
-            value={work.company}
-            onChange={(event) => handleInputChange(index, event)}
-          />
-          <Label htmlFor={`title-${index}`}>Title</Label>
-          <Input
-            type="text"
-            id={`title-${index}`}
-            name="title"
-            value={work.title}
-            onChange={(event) => handleInputChange(index, event)}
-          />
-          <Label htmlFor={`date-${index}`}>Date</Label>
-          <Input
-            type="text"
-            id={`date-${index}`}
-            name="date"
-            value={work.date}
-            onChange={(event) => handleInputChange(index, event)}
-          />
-          <Label htmlFor={`description-${index}`}>Description</Label>
-          <ReactQuillWrapper>
-            <ReactQuill
-              value={work.description}
-              onChange={(value) => handleDescriptionChange(index, value)}
-              theme="snow"
-              modules={{ toolbar: toolbarOptions }}
+          <Accordion
+            openState={work.isOpen}
+            title={work.company ? work.company : `Work Experience ${index + 1}`}
+          >
+            <Label htmlFor={`company-${index}`}>Company Name</Label>
+            <Input
+              type="text"
+              id={`company-${index}`}
+              name="company"
+              value={work.company}
+              onChange={(event) => handleInputChange(index, event)}
             />
-          </ReactQuillWrapper>
+            <Label htmlFor={`title-${index}`}>Title</Label>
+            <Input
+              type="text"
+              id={`title-${index}`}
+              name="title"
+              value={work.title}
+              onChange={(event) => handleInputChange(index, event)}
+            />
+            <Label htmlFor={`date-${index}`}>Date</Label>
+            <Input
+              type="text"
+              id={`date-${index}`}
+              name="date"
+              value={work.date}
+              onChange={(event) => handleInputChange(index, event)}
+            />
+            <Label htmlFor={`description-${index}`}>Description</Label>
+            <ReactQuillWrapper>
+              <ReactQuill
+                value={work.description}
+                onChange={(value) => handleDescriptionChange(index, value)}
+                theme="snow"
+                modules={{ toolbar: toolbarOptions }}
+              />
+            </ReactQuillWrapper>
+            <Button type="button" onClick={() => handleDeleteWork(index)}>
+              <Icon data-feather="trash"></Icon> Delete
+            </Button>
+          </Accordion>
         </div>
       ))}
       <Button type="button" onClick={handleAddWork}>

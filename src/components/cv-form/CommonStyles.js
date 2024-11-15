@@ -81,7 +81,7 @@ export const SectionWrapper = styled.div`
 
 export const Button = styled.button`
   padding: 5px 10px;
-  border: none;
+  border: 1px dotted grey; /* Grey dotted border */
   border-radius: 4px;
   background-color: #007bff;
   color: #fff;
