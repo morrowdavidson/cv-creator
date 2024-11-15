@@ -151,6 +151,10 @@ export const ActionButtons = styled.div`
   display: flex;
   align-items: flex-end;
   flex-direction: column;
+
+  @media (max-width: 975px) {
+    align-items: center;
+  }
 `;
 
 export const Button = styled.button`
