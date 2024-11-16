@@ -49,7 +49,7 @@ export const SmallInput = styled.input`
   font-family: 'Roboto', sans-serif;
 
   &:focus {
-    border-color: #007bff;
+    border-color: #c656fe;
     outline: none;
   }
 `;

@@ -27,7 +27,7 @@ const AccordionHeader = styled.div`
 
 const AccordionContent = styled.div`
   overflow: hidden;
-  background-color: #fcfcfc;
+  background-color: #fff;
   border-top: none;
   border-radius: 0 0 4px 4px;
   transition: max-height 0.3s ease-out, padding 0.3s ease-out;
