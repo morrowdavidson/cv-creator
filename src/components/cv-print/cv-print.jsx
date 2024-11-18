@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
-import { useReactToPrint } from 'react-to-print';
 import {
   CvPrintContainer,
   CvPrintWrapper,
-  ActionButtons,
-  Button,
   ForPrinting,
   Heading1,
   MainContent,
@@ -19,15 +15,15 @@ import {
   Work,
 } from './cvPrintStyles';
 
-function CvPrint({ generalInfo, educationList, workList, skillList }) {
-  const contentRef = useRef();
-
-  const handlePrint = useReactToPrint({ contentRef });
+function CvPrint({
+  generalInfo,
+  educationList,
+  workList,
+  skillList,
+  contentRef,
+}) {
   return (
     <>
-      <ActionButtons>
-        <Button onClick={handlePrint}>Print</Button>
-      </ActionButtons>
       <CvPrintContainer>
         <CvPrintWrapper>
           <ForPrinting ref={contentRef}>
@@ -136,6 +132,7 @@ CvPrint.propTypes = {
       skill: PropTypes.string.isRequired,
     })
   ).isRequired,
+  contentRef: PropTypes.string,
 };
 
 export default CvPrint;

@@ -2,7 +2,14 @@ import { useState, useEffect } from 'react';
 import CvForm from './components/cv-form/cv-form.jsx';
 import CvPrint from './components/cv-print/cv-print.jsx';
 import dwightInfo from './data/dwightsInfo';
-import { Container, FormWrapper, PrintWrapper, Button } from './AppStyles';
+import {
+  FormPrintContainer,
+  FormWrapper,
+  PrintWrapper,
+  Button,
+} from './AppStyles';
+import { useReactToPrint } from 'react-to-print';
+import { useRef } from 'react';
 
 const exampleInfo = dwightInfo;
 
@@ -56,32 +63,41 @@ function App() {
       aboutMe: '<p></p>',
     });
   };
+  const contentRef = useRef();
+
+  const handlePrint = useReactToPrint({ contentRef });
 
   return (
-    <Container>
-      <FormWrapper>
-        <Button onClick={setExampleInfo}>Example Resume</Button>
-        <Button onClick={clearInfo}>Clear Resume</Button>
-        <CvForm
-          generalInfo={generalInfo}
-          setGeneralInfo={setGeneralInfo}
-          educationList={educationList}
-          setEducationList={setEducationList}
-          workList={workList}
-          setWorkList={setWorkList}
-          skillList={skillList}
-          setSkillList={setSkillList}
-        />
-      </FormWrapper>
-      <PrintWrapper>
-        <CvPrint
-          generalInfo={generalInfo}
-          educationList={educationList}
-          workList={workList}
-          skillList={skillList}
-        />
-      </PrintWrapper>
-    </Container>
+    <>
+      <h1>CV Creator</h1>
+      <Button onClick={setExampleInfo}>Example Resume</Button>
+      <Button onClick={clearInfo}>Clear Resume</Button>
+      <Button onClick={handlePrint}>Print</Button>
+
+      <FormPrintContainer>
+        <FormWrapper>
+          <CvForm
+            generalInfo={generalInfo}
+            setGeneralInfo={setGeneralInfo}
+            educationList={educationList}
+            setEducationList={setEducationList}
+            workList={workList}
+            setWorkList={setWorkList}
+            skillList={skillList}
+            setSkillList={setSkillList}
+          />
+        </FormWrapper>
+        <PrintWrapper>
+          <CvPrint
+            generalInfo={generalInfo}
+            educationList={educationList}
+            workList={workList}
+            skillList={skillList}
+            contentRef={contentRef}
+          />
+        </PrintWrapper>
+      </FormPrintContainer>
+    </>
   );
 }
 
