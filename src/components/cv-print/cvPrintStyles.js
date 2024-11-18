@@ -3,12 +3,10 @@ import styled from 'styled-components';
 export const CvPrintContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 20px;
   position: sticky;
   top: 0;
   font-family: 'Geist', sans-serif;
   @media (max-width: 1350px) {
-    padding: 10px;
   }
   @media print {
     padding: 20px;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const FormPrintContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 20px;
     @media (max-width: 975px) {
     flex-direction: column;
 `;
@@ -43,4 +42,21 @@ export const Button = styled.button`
     background-color: #ccc;
     cursor: not-allowed;
   }
+`;
+
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 550px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const Heading = styled.h1`
+  font-size: 20px;
+  font-family: 'Geist', sans-serif;
+`;
+export const ActionButtons = styled.div`
+  display: flex;
 `;

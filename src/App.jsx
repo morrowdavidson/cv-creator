@@ -7,6 +7,9 @@ import {
   FormWrapper,
   PrintWrapper,
   Button,
+  Header,
+  Heading,
+  ActionButtons,
 } from './AppStyles';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
@@ -69,10 +72,14 @@ function App() {
 
   return (
     <>
-      <h1>CV Creator</h1>
-      <Button onClick={setExampleInfo}>Example Resume</Button>
-      <Button onClick={clearInfo}>Clear Resume</Button>
-      <Button onClick={handlePrint}>Print</Button>
+      <Header>
+        <Heading>CV Creator</Heading>
+        <ActionButtons>
+          <Button onClick={setExampleInfo}>Example Resume</Button>
+          <Button onClick={clearInfo}>Clear Resume</Button>
+          <Button onClick={handlePrint}>Print</Button>
+        </ActionButtons>
+      </Header>
 
       <FormPrintContainer>
         <FormWrapper>
