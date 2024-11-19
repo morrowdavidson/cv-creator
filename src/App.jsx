@@ -13,6 +13,7 @@ import {
 } from './AppStyles';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
+import { Feather } from 'react-feather';
 
 const exampleInfo = dwightInfo;
 
@@ -73,7 +74,10 @@ function App() {
   return (
     <>
       <Header>
-        <Heading>CV Creator</Heading>
+        <Heading>
+          <Feather size={24} color="#c656fe" />
+          CV Creator
+        </Heading>
         <ActionButtons>
           <Button onClick={setExampleInfo}>Example Resume</Button>
           <Button onClick={clearInfo}>Clear Resume</Button>
