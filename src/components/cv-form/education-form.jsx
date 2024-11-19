@@ -1,14 +1,9 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { Form, Button, Input, Icon, Label, AddButton } from './CommonStyles';
-import feather from 'feather-icons';
+import { Form, Button, Input, Label, AddButton } from './CommonStyles';
 import Accordion from '../Accordion';
+import { Trash } from 'react-feather';
 
 function EducationForm({ educationList, setEducationList }) {
-  useEffect(() => {
-    feather.replace();
-  }, [educationList]);
-
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedEducationList = educationList.map((education, i) =>
@@ -73,7 +68,7 @@ function EducationForm({ educationList, setEducationList }) {
               onChange={(event) => handleInputChange(index, event)}
             />
             <Button type="button" onClick={() => handleDeleteEducation(index)}>
-              <Icon data-feather="trash"></Icon> Delete
+              <Trash size={16} /> Delete
             </Button>
           </Accordion>
         </div>

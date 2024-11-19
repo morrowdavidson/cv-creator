@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 import {
   Form,
   Button,
   Input,
   Label,
-  Icon,
   ReactQuillWrapper,
   AddButton,
 } from './CommonStyles';
-import feather from 'feather-icons';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Accordion from '../Accordion';
+import { Trash } from 'react-feather';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -22,10 +20,6 @@ const toolbarOptions = [
 ];
 
 function WorkForm({ workList, setWorkList }) {
-  useEffect(() => {
-    feather.replace();
-  }, [workList]);
-
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedWorkList = workList.map((work, i) =>
@@ -109,7 +103,7 @@ function WorkForm({ workList, setWorkList }) {
               />
             </ReactQuillWrapper>
             <Button type="button" onClick={() => handleDeleteWork(index)}>
-              <Icon data-feather="trash"></Icon> Delete
+              <Trash size={16} /> Delete
             </Button>
           </Accordion>
         </div>
