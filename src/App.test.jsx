@@ -7,7 +7,9 @@ import App from './App';
 describe('App component', () => {
   it('renders correct main heading', () => {
     render(<App />);
-    expect(screen.getByRole('heading', { level: 1 }));
+    expect(
+      screen.getByRole('heading', { level: 1, name: /CV Creator/i })
+    ).toBeInTheDocument();
   });
 
   it('renders the General Information heading', () => {
