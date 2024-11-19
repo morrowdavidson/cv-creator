@@ -132,7 +132,7 @@ CvPrint.propTypes = {
       skill: PropTypes.string.isRequired,
     })
   ).isRequired,
-  contentRef: PropTypes.string,
+  contentRef: PropTypes.object,
 };
 
 export default CvPrint;

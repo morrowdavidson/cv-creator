@@ -10,9 +10,11 @@ function Skills({ skillList, setSkillList }) {
   }, [skillList]);
 
   const handleInputChange = (index, event) => {
-    const values = [...skillList];
-    values[index][event.target.name] = event.target.value;
-    setSkillList(values);
+    const { name, value } = event.target;
+    const updatedSkills = skillList.map((skill, i) =>
+      i === index ? { ...skill, [name]: value } : skill
+    );
+    setSkillList(updatedSkills);
   };
 
   function handleAddSkill() {

@@ -1,15 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
-import {
-  Form,
-  Button,
-  Input,
-  Icon,
-  IconButton,
-  Label,
-  SectionHeader,
-  AddButton,
-} from './CommonStyles';
+import { Form, Button, Input, Icon, Label, AddButton } from './CommonStyles';
 import feather from 'feather-icons';
 import Accordion from '../Accordion';
 
@@ -19,9 +10,11 @@ function EducationForm({ educationList, setEducationList }) {
   }, [educationList]);
 
   const handleInputChange = (index, event) => {
-    const values = [...educationList];
-    values[index][event.target.name] = event.target.value;
-    setEducationList(values);
+    const { name, value } = event.target;
+    const updatedEducationList = educationList.map((education, i) =>
+      i === index ? { ...education, [name]: value } : education
+    );
+    setEducationList(updatedEducationList);
   };
 
   function handleAddEducation() {

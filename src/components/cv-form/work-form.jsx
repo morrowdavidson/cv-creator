@@ -6,8 +6,6 @@ import {
   Input,
   Label,
   Icon,
-  IconButton,
-  SectionHeader,
   ReactQuillWrapper,
   AddButton,
 } from './CommonStyles';
@@ -29,9 +27,11 @@ function WorkForm({ workList, setWorkList }) {
   }, [workList]);
 
   const handleInputChange = (index, event) => {
-    const values = [...workList];
-    values[index][event.target.name] = event.target.value;
-    setWorkList(values);
+    const { name, value } = event.target;
+    const updatedWorkList = workList.map((work, i) =>
+      i === index ? { ...work, [name]: value } : work
+    );
+    setWorkList(updatedWorkList);
   };
 
   const handleDescriptionChange = (index, value) => {

@@ -15,39 +15,38 @@ import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { Feather } from 'react-feather';
 
-const exampleInfo = dwightInfo;
+const exampleInfo = { ...dwightInfo };
 
-function useLocalStorageState(key, defaultValue) {
-  const [state, setState] = useState(() => {
-    const saved = localStorage.getItem(key);
-    const initialValue = JSON.parse(saved);
-    return initialValue || defaultValue;
-  });
-
+function useLocalStorage(key, value) {
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+}
 
-  return [state, setState];
+function getInitialState(key, defaultValue) {
+  const saved = localStorage.getItem(key);
+  const initialValue = JSON.parse(saved);
+  return initialValue || defaultValue;
 }
 
 function App() {
-  const [generalInfo, setGeneralInfo] = useLocalStorageState(
-    'generalInfo',
-    exampleInfo.generalInfo
+  const [generalInfo, setGeneralInfo] = useState(() =>
+    getInitialState('generalInfo', exampleInfo.generalInfo)
   );
-  const [educationList, setEducationList] = useLocalStorageState(
-    'educationList',
-    exampleInfo.educationList
+  const [educationList, setEducationList] = useState(() =>
+    getInitialState('educationList', exampleInfo.educationList)
   );
-  const [workList, setWorkList] = useLocalStorageState(
-    'workList',
-    exampleInfo.workList
+  const [workList, setWorkList] = useState(() =>
+    getInitialState('workList', exampleInfo.workList)
   );
-  const [skillList, setSkillList] = useLocalStorageState(
-    'skillList',
-    exampleInfo.skillList
+  const [skillList, setSkillList] = useState(() =>
+    getInitialState('skillList', exampleInfo.skillList)
   );
+
+  useLocalStorage('generalInfo', generalInfo);
+  useLocalStorage('educationList', educationList);
+  useLocalStorage('workList', workList);
+  useLocalStorage('skillList', skillList);
 
   const setExampleInfo = () => {
     setGeneralInfo(exampleInfo.generalInfo);
