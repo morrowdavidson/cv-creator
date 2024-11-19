@@ -55,6 +55,8 @@ export const Header = styled.div`
 
 export const Heading = styled.h1`
   font-size: 20px;
+  font-weight: 500;
+
   font-family: 'Geist', sans-serif;
 `;
 export const ActionButtons = styled.div`
