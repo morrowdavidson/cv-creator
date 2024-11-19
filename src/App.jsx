@@ -18,12 +18,6 @@ import { Feather } from 'react-feather';
 
 const exampleInfo = { ...dwightInfo };
 
-function useLocalStorage(key, value) {
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-}
-
 function getInitialState(key, defaultValue) {
   const saved = localStorage.getItem(key);
   const initialValue = JSON.parse(saved);
@@ -31,9 +25,7 @@ function getInitialState(key, defaultValue) {
 }
 
 function App() {
-  const [generalInfo, setGeneralInfo] = useState(() =>
-    getInitialState('generalInfo', exampleInfo.generalInfo)
-  );
+  const [generalInfo, setGeneralInfo] = useState(exampleInfo.generalInfo);
   const [educationList, setEducationList] = useState(() =>
     getInitialState('educationList', exampleInfo.educationList)
   );
@@ -44,10 +36,41 @@ function App() {
     getInitialState('skillList', exampleInfo.skillList)
   );
 
-  useLocalStorage('generalInfo', generalInfo);
-  useLocalStorage('educationList', educationList);
-  useLocalStorage('workList', workList);
-  useLocalStorage('skillList', skillList);
+  useEffect(() => {
+    const savedCategories = [
+      'generalInfo',
+      'educationList',
+      'workList',
+      'skillList',
+    ];
+    const setStateFunctions = [
+      setGeneralInfo,
+      setEducationList,
+      setWorkList,
+      setSkillList,
+    ];
+
+    savedCategories.forEach((key, index) => {
+      const savedCategory = localStorage.getItem(key);
+      if (savedCategory) {
+        setStateFunctions[index](JSON.parse(savedCategory));
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const savedCategories = [
+      'generalInfo',
+      'educationList',
+      'workList',
+      'skillList',
+    ];
+    const savedInfo = [generalInfo, educationList, workList, skillList];
+
+    savedCategories.forEach((key, index) => {
+      localStorage.setItem(key, JSON.stringify(savedInfo[index]));
+    });
+  }, [generalInfo, educationList, workList, skillList]);
 
   const setExampleInfo = () => {
     setGeneralInfo(exampleInfo.generalInfo);
