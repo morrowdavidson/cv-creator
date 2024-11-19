@@ -10,6 +10,7 @@ import {
   Header,
   Heading,
   ActionButtons,
+  LightButton,
 } from './AppStyles';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
@@ -78,8 +79,8 @@ function App() {
           CV Creator
         </Heading>
         <ActionButtons>
-          <Button onClick={setExampleInfo}>Example Resume</Button>
-          <Button onClick={clearInfo}>Clear Resume</Button>
+          <LightButton onClick={setExampleInfo}>Example Resume</LightButton>
+          <LightButton onClick={clearInfo}>Clear Resume</LightButton>
           <Button onClick={handlePrint}>Print</Button>
         </ActionButtons>
       </Header>

@@ -44,6 +44,34 @@ export const Button = styled.button`
   }
 `;
 
+export const LightButton = styled.button`
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 4px;
+  border: 1px solid #c656fe;
+  color: #c656fe;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #c656fe;
+    color: #fff;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(198, 86, 254, 0.5);
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
