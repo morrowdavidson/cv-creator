@@ -18,24 +18,11 @@ import { Feather } from 'react-feather';
 
 const exampleInfo = { ...dwightInfo };
 
-function getInitialState(key, defaultValue) {
-  const saved = localStorage.getItem(key);
-  const initialValue = JSON.parse(saved);
-  return initialValue || defaultValue;
-}
-
 function App() {
   const [generalInfo, setGeneralInfo] = useState(exampleInfo.generalInfo);
-  const [educationList, setEducationList] = useState(() =>
-    getInitialState('educationList', exampleInfo.educationList)
-  );
-  const [workList, setWorkList] = useState(() =>
-    getInitialState('workList', exampleInfo.workList)
-  );
-  const [skillList, setSkillList] = useState(() =>
-    getInitialState('skillList', exampleInfo.skillList)
-  );
-
+  const [educationList, setEducationList] = useState(exampleInfo.educationList);
+  const [workList, setWorkList] = useState(exampleInfo.workList);
+  const [skillList, setSkillList] = useState(exampleInfo.skillList);
   useEffect(() => {
     const savedCategories = [
       'generalInfo',
