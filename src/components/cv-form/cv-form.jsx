@@ -7,6 +7,7 @@ import Skills from './skills-form';
 import { SectionWrapper } from './CommonStyles';
 import feather from 'feather-icons';
 import { useEffect } from 'react';
+import Sortable from './sortable';
 
 const Header = styled.h2`
   font-family: 'Roboto', sans-serif;
@@ -75,6 +76,16 @@ function CvForm({
           Work Experience
         </Header>
         <WorkForm workList={workList} setWorkList={setWorkList} />
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <Sortable list={workList} setList={setWorkList} />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Sortable list={skillList} setList={setSkillList} />
+      </SectionWrapper>
+      <SectionWrapper>
+        <Sortable list={educationList} setList={setEducationList} />
       </SectionWrapper>
     </>
   );

@@ -8,19 +8,21 @@ const dwightInfo = {
   },
   educationList: [
     {
-      school: 'Scranton High School',
+      name: 'Scranton High School',
       degree: 'High School Diploma',
       year: '1993',
+      id: 8,
     },
     {
-      school: 'Pennsylvania State University',
+      name: 'Pennsylvania State University',
       degree: 'Bachelor of Business Administration',
       year: '1997',
+      id: 7,
     },
   ],
   workList: [
     {
-      company: 'Dunder Mifflin',
+      name: 'Dunder Mifflin',
       title: 'Assistant to the Regional Manager',
       date: '2001-Present',
       description: `
@@ -32,9 +34,10 @@ const dwightInfo = {
           <li>Maintained strong relationships with key clients, resulting in high client retention rates and repeat business.</li>
         </ul>
       `,
+      id: 6,
     },
     {
-      company: 'Schrute Farms',
+      name: 'Schrute Farms',
       title: 'Owner',
       date: '1997-Present',
       description: ` 
@@ -44,13 +47,17 @@ const dwightInfo = {
           <li>Expanded the farm's operations by acquiring additional land and diversifying crop production, leading to increased revenue and business growth.</li>
         </ul>
       `,
+      id: 5,
     },
   ],
   skillList: [
-    { skill: 'Sales' },
-    { skill: 'Leadership' },
-    { skill: 'Beet Farming' },
-    { skill: 'Martial Arts' },
+    { name: 'Sales', id: 1 },
+
+    { name: 'Leadership', id: 2 },
+
+    { name: 'Beet Farming', id: 3 },
+
+    { name: 'Martial Arts', id: 4 },
   ],
 };
 

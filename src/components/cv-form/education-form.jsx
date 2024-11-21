@@ -14,7 +14,13 @@ function EducationForm({ educationList, setEducationList }) {
 
   function handleAddEducation() {
     // Create a new education entry
-    const newEducation = { school: '', degree: '', year: '', isOpen: true };
+    const newEducation = {
+      id: Date.now(),
+      name: '',
+      degree: '',
+      year: '',
+      isOpen: true,
+    };
 
     // Create a new array with the existing educationList and the new entry
     const updatedEducationList = [...educationList, newEducation];
@@ -38,17 +44,15 @@ function EducationForm({ educationList, setEducationList }) {
       {educationList.map((education, index) => (
         <div key={index}>
           <Accordion
-            title={
-              education.school ? education.school : `Education #${index + 1}`
-            }
+            title={education.name ? education.name : `Education #${index + 1}`}
             openState={education.isOpen}
           >
             <Label htmlFor={`school-${index}`}>School</Label>
             <Input
               type="text"
               id={`school-${index}`}
-              name="school"
-              value={education.school}
+              name="name"
+              value={education.name}
               onChange={(event) => handleInputChange(index, event)}
             />
             <Label htmlFor={`degree-${index}`}>Degree</Label>
