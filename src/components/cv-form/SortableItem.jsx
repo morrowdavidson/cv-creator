@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { MoreVertical } from 'react-feather';
@@ -24,5 +24,10 @@ function SortableItem({ id, name }) {
     </div>
   );
 }
+
+SortableItem.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  name: PropTypes.string.isRequired,
+};
 
 export default SortableItem;

@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import {
   DndContext,
   closestCenter,
@@ -53,5 +53,15 @@ function Sortable({ list, setList }) {
     </>
   );
 }
+
+Sortable.propTypes = {
+  list: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  setList: PropTypes.func.isRequired,
+};
 
 export default Sortable;
