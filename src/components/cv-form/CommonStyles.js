@@ -114,7 +114,7 @@ export const AddButton = styled.button`
   padding: 10px 10px;
   border: 1px dotted #ccc; /* Grey dotted border */
   border-radius: 4px;
-  color: gray;
+  color: #000;
   font-family: 'Roboto', sans-serif;
   font-size: 0.75em;
   cursor: pointer;
