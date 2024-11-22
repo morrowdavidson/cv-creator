@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { MoreVertical } from 'react-feather';
 
 function SortableItem({ id, name }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -19,7 +20,7 @@ function SortableItem({ id, name }) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {name}
+      <MoreVertical size={14} /> {name}
     </div>
   );
 }

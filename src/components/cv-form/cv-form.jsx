@@ -91,9 +91,11 @@ function CvForm({
             <Icon data-feather="book"></Icon>
             Education
           </Header>
-          <Button type="button" onClick={toggleEducationSortable}>
-            {isEducationSortable ? 'Done' : 'Sort'}
-          </Button>
+          {educationList.length > 1 ? (
+            <Button type="button" onClick={toggleEducationSortable}>
+              {isEducationSortable ? 'Done' : 'Sort'}
+            </Button>
+          ) : null}
         </HeaderWrapper>
 
         {isEducationSortable ? (
@@ -111,9 +113,11 @@ function CvForm({
             <Icon data-feather="award"></Icon>
             Skills
           </Header>
-          <Button type="button" onClick={toggleSkillsSortable}>
-            {isSkillsSortable ? 'Done' : 'Sort'}
-          </Button>
+          {skillList.length > 1 ? (
+            <Button type="button" onClick={toggleSkillsSortable}>
+              {isSkillsSortable ? 'Done' : 'Sort'}
+            </Button>
+          ) : null}
         </HeaderWrapper>
         {isSkillsSortable ? (
           <Sortable list={skillList} setList={setSkillList} />
@@ -127,9 +131,11 @@ function CvForm({
             <Icon data-feather="briefcase"></Icon>
             Work Experience
           </Header>
-          <Button type="button" onClick={toggleWorkSortable}>
-            {isWorkSortable ? 'Done' : 'Sort'}
-          </Button>
+          {workList.length > 1 ? (
+            <Button type="button" onClick={toggleWorkSortable}>
+              {isWorkSortable ? 'Done' : 'Sort'}
+            </Button>
+          ) : null}
         </HeaderWrapper>
         {isWorkSortable ? (
           <Sortable list={workList} setList={setWorkList} />
