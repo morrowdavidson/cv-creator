@@ -37,7 +37,8 @@ function WorkForm({ workList, setWorkList }) {
   function handleAddWork() {
     // Create a new work entry
     const newWork = {
-      company: '',
+      id: Date.now(),
+      name: '',
       title: '',
       date: '',
       description: '',
@@ -67,14 +68,14 @@ function WorkForm({ workList, setWorkList }) {
         <div key={index}>
           <Accordion
             openState={work.isOpen}
-            title={work.company ? work.company : `Work Experience ${index + 1}`}
+            title={work.name ? work.name : `Work Experience ${index + 1}`}
           >
             <Label htmlFor={`company-${index}`}>Company Name</Label>
             <Input
               type="text"
               id={`company-${index}`}
-              name="company"
-              value={work.company}
+              name="name"
+              value={work.name}
               onChange={(event) => handleInputChange(index, event)}
             />
             <Label htmlFor={`title-${index}`}>Title</Label>

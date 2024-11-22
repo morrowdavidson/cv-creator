@@ -19,7 +19,7 @@ function Skills({ skillList, setSkillList }) {
 
   function handleAddSkill() {
     // Create a new skill entry
-    const newSkill = { skill: '' };
+    const newSkill = { id: Date.now(), name: '' };
 
     // Create a new array with the existing skillList and the new entry
     const updatedSkillList = [...skillList, newSkill];
@@ -44,9 +44,9 @@ function Skills({ skillList, setSkillList }) {
         <Form key={index}>
           <SmallInput
             type="text"
-            name="skill"
+            name="name"
             placeholder="Skill"
-            value={skill.skill}
+            value={skill.name}
             onChange={(event) => handleInputChange(index, event)}
           />
           <IconButton type="button" onClick={() => handleDeleteSkill(index)}>

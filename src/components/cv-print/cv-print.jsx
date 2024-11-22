@@ -47,7 +47,7 @@ function CvPrint({
                     <Heading2>Education</Heading2>
                     {educationList.map((education, index) => (
                       <InnerSection key={index}>
-                        <Paragraph>{education.school}</Paragraph>
+                        <Paragraph>{education.name}</Paragraph>
                         <Paragraph>
                           <b>{education.degree}</b>{' '}
                         </Paragraph>
@@ -62,7 +62,7 @@ function CvPrint({
                     <Heading2>Skills</Heading2>
                     <UnorderedList>
                       {skillList.map((skill, index) => (
-                        <li key={index}>{skill.skill}</li>
+                        <li key={index}>{skill.name}</li>
                       ))}
                     </UnorderedList>
                   </Section>
@@ -86,7 +86,7 @@ function CvPrint({
                         <Paragraph>{work.date}</Paragraph>
                         <Paragraph>
                           <b>{work.title} </b>
-                          {work.company}
+                          {work.name}
                         </Paragraph>
                         <Paragraph
                           dangerouslySetInnerHTML={{
