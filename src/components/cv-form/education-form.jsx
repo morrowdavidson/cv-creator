@@ -1,9 +1,25 @@
 import PropTypes from 'prop-types';
-import { Form, Button, Input, Label, AddButton } from './CommonStyles';
+import { useState, useEffect } from 'react';
+import {
+  Form,
+  Button,
+  Input,
+  Label,
+  AddButton,
+  UndoMessage,
+  UndoTimer,
+  IconButton,
+} from './CommonStyles';
 import Accordion from '../Accordion';
-import { Trash } from 'react-feather';
+import { Trash, RotateCcw } from 'react-feather';
 
 function EducationForm({ educationList, setEducationList }) {
+  const [deletedItem, setDeletedItem] = useState(null);
+  const [showUndo, setShowUndo] = useState(false);
+  const [undoTimeout, setUndoTimeout] = useState(null);
+  const [timerWidth, setTimerWidth] = useState(100);
+  const [intervalId, setIntervalId] = useState(null);
+
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedEducationList = educationList.map((education, i) =>
@@ -12,8 +28,7 @@ function EducationForm({ educationList, setEducationList }) {
     setEducationList(updatedEducationList);
   };
 
-  function handleAddEducation() {
-    // Create a new education entry
+  const handleAddEducation = () => {
     const newEducation = {
       id: Date.now(),
       name: '',
@@ -21,26 +36,69 @@ function EducationForm({ educationList, setEducationList }) {
       year: '',
       isOpen: true,
     };
-
-    // Create a new array with the existing educationList and the new entry
     const updatedEducationList = [...educationList, newEducation];
-
-    // Update the state with the new array
     setEducationList(updatedEducationList);
-  }
+  };
 
-  function handleDeleteEducation(index) {
-    // Create a new array without the deleted education
-    const updatedEducationList = educationList.filter(function (_, i) {
-      return i !== index;
-    });
-
-    // Update the state with the new array
+  const handleDeleteEducation = (index) => {
+    const itemToDelete = educationList[index];
+    setDeletedItem(itemToDelete);
+    const updatedEducationList = educationList.filter((_, i) => i !== index);
     setEducationList(updatedEducationList);
-  }
+    setShowUndo(true);
+    setTimerWidth(100);
+
+    // Clear the previous timeout and interval if they exist
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+    }
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+
+    // Set a new timeout to hide the undo message after 4 seconds
+    const timeoutId = setTimeout(() => {
+      setShowUndo(false);
+    }, 4000);
+    setUndoTimeout(timeoutId);
+
+    // Update the timer width every 100ms
+    const newIntervalId = setInterval(() => {
+      setTimerWidth((prevWidth) => Math.max(prevWidth - 2.5, 0));
+    }, 100);
+    setIntervalId(newIntervalId);
+
+    // Clear the interval when the timeout completes
+    setTimeout(() => {
+      clearInterval(newIntervalId);
+    }, 4000);
+  };
+
+  const handleUndo = () => {
+    setEducationList([...educationList, deletedItem]);
+    setDeletedItem(null);
+    setShowUndo(false);
+
+    // Clear the timeout and interval when undo is clicked
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+    }
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+  };
 
   return (
     <Form>
+      {showUndo && (
+        <UndoMessage>
+          <span>{deletedItem.name} deleted</span>
+          <IconButton type="button" onClick={handleUndo}>
+            <RotateCcw size={16} /> Undo
+          </IconButton>
+          <UndoTimer width={timerWidth} />
+        </UndoMessage>
+      )}
       {educationList.map((education, index) => (
         <div key={index}>
           <Accordion
