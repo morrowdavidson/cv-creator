@@ -1,21 +1,13 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useState } from 'react';
+import { Form, SmallInput, IconButton, AddButton } from './CommonStyles';
+import { Trash } from 'react-feather';
+import UndoNotification from './UndoNotification';
 
-import { Form, AddButton, SmallInput, Icon, IconButton } from './CommonStyles';
-import feather from 'feather-icons';
-
-function Skills({ skillList, setSkillList }) {
-  useEffect(() => {
-    feather.replace();
-  }, [skillList]);
-
-  const handleInputChange = (index, event) => {
-    const { name, value } = event.target;
-    const updatedSkills = skillList.map((skill, i) =>
-      i === index ? { ...skill, [name]: value } : skill
-    );
-    setSkillList(updatedSkills);
-  };
+function SkillsForm({ skillList, setSkillList }) {
+  const [deletedItem, setDeletedItem] = useState(null);
+  const [showUndo, setShowUndo] = useState(false);
+  const [undoTimeout, setUndoTimeout] = useState(null);
 
   function handleAddSkill() {
     // Create a new skill entry
@@ -28,18 +20,53 @@ function Skills({ skillList, setSkillList }) {
     setSkillList(updatedSkillList);
   }
 
-  function handleDeleteSkill(index) {
-    // Create a new array without the deleted skill
-    const updatedSkillList = skillList.filter(function (_, i) {
-      return i !== index;
-    });
-
-    // Update the state with the new array
+  const handleInputChange = (index, event) => {
+    const { name, value } = event.target;
+    const updatedSkillList = skillList.map((skill, i) =>
+      i === index ? { ...skill, [name]: value } : skill
+    );
     setSkillList(updatedSkillList);
-  }
+  };
+
+  const handleDeleteSkill = (index) => {
+    const itemToDelete = skillList[index];
+    setDeletedItem(itemToDelete);
+    const updatedSkillList = skillList.filter((_, i) => i !== index);
+    setSkillList(updatedSkillList);
+    setShowUndo(true);
+
+    // Clear the previous timeout if it exists
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+    }
+
+    // Set a new timeout to hide the undo message after 4 seconds
+    const timeoutId = setTimeout(() => {
+      setShowUndo(false);
+    }, 4000);
+    setUndoTimeout(timeoutId);
+  };
+
+  const handleUndo = () => {
+    setSkillList([...skillList, deletedItem]);
+    setDeletedItem(null);
+    setShowUndo(false);
+
+    // Clear the timeout when undo is clicked
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+    }
+  };
 
   return (
     <>
+      {showUndo && (
+        <UndoNotification
+          deletedItem={deletedItem}
+          onUndo={handleUndo}
+          onTimeout={() => setShowUndo(false)}
+        />
+      )}
       {skillList.map((skill, index) => (
         <Form key={index}>
           <SmallInput
@@ -50,7 +77,7 @@ function Skills({ skillList, setSkillList }) {
             onChange={(event) => handleInputChange(index, event)}
           />
           <IconButton type="button" onClick={() => handleDeleteSkill(index)}>
-            <Icon data-feather="trash"></Icon>
+            <Trash size={16} />
           </IconButton>
         </Form>
       ))}
@@ -61,13 +88,9 @@ function Skills({ skillList, setSkillList }) {
   );
 }
 
-Skills.propTypes = {
-  skillList: PropTypes.arrayOf(
-    PropTypes.shape({
-      skill: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+SkillsForm.propTypes = {
+  skillList: PropTypes.array.isRequired,
   setSkillList: PropTypes.func.isRequired,
 };
 
-export default Skills;
+export default SkillsForm;
