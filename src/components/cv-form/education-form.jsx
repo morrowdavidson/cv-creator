@@ -1,24 +1,14 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
-import {
-  Form,
-  Button,
-  Input,
-  Label,
-  AddButton,
-  UndoMessage,
-  UndoTimer,
-  IconButton,
-} from './CommonStyles';
+import { useState } from 'react';
+import { Form, Button, Input, Label, AddButton } from './CommonStyles';
 import Accordion from '../Accordion';
-import { Trash, RotateCcw } from 'react-feather';
+import { Trash } from 'react-feather';
+import UndoNotification from './UndoNotification';
 
 function EducationForm({ educationList, setEducationList }) {
   const [deletedItem, setDeletedItem] = useState(null);
   const [showUndo, setShowUndo] = useState(false);
   const [undoTimeout, setUndoTimeout] = useState(null);
-  const [timerWidth, setTimerWidth] = useState(100);
-  const [intervalId, setIntervalId] = useState(null);
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -46,14 +36,10 @@ function EducationForm({ educationList, setEducationList }) {
     const updatedEducationList = educationList.filter((_, i) => i !== index);
     setEducationList(updatedEducationList);
     setShowUndo(true);
-    setTimerWidth(100);
 
-    // Clear the previous timeout and interval if they exist
+    // Clear the previous timeout if it exists
     if (undoTimeout) {
       clearTimeout(undoTimeout);
-    }
-    if (intervalId) {
-      clearInterval(intervalId);
     }
 
     // Set a new timeout to hide the undo message after 4 seconds
@@ -61,17 +47,6 @@ function EducationForm({ educationList, setEducationList }) {
       setShowUndo(false);
     }, 4000);
     setUndoTimeout(timeoutId);
-
-    // Update the timer width every 100ms
-    const newIntervalId = setInterval(() => {
-      setTimerWidth((prevWidth) => Math.max(prevWidth - 2.5, 0));
-    }, 100);
-    setIntervalId(newIntervalId);
-
-    // Clear the interval when the timeout completes
-    setTimeout(() => {
-      clearInterval(newIntervalId);
-    }, 4000);
   };
 
   const handleUndo = () => {
@@ -79,25 +54,20 @@ function EducationForm({ educationList, setEducationList }) {
     setDeletedItem(null);
     setShowUndo(false);
 
-    // Clear the timeout and interval when undo is clicked
+    // Clear the timeout when undo is clicked
     if (undoTimeout) {
       clearTimeout(undoTimeout);
-    }
-    if (intervalId) {
-      clearInterval(intervalId);
     }
   };
 
   return (
     <Form>
       {showUndo && (
-        <UndoMessage>
-          <span>{deletedItem.name} deleted</span>
-          <IconButton type="button" onClick={handleUndo}>
-            <RotateCcw size={16} /> Undo
-          </IconButton>
-          <UndoTimer width={timerWidth} />
-        </UndoMessage>
+        <UndoNotification
+          deletedItem={deletedItem}
+          onUndo={handleUndo}
+          onTimeout={() => setShowUndo(false)}
+        />
       )}
       {educationList.map((education, index) => (
         <div key={index}>
