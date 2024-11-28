@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+
 import {
   Form,
   Button,
@@ -11,6 +13,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Accordion from '../Accordion';
 import { Trash } from 'react-feather';
+import UndoNotification from './UndoNotification';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -20,6 +23,10 @@ const toolbarOptions = [
 ];
 
 function WorkForm({ workList, setWorkList }) {
+  const [deletedItem, setDeletedItem] = useState(null);
+  const [showUndo, setShowUndo] = useState(false);
+  const [undoTimeout, setUndoTimeout] = useState(null);
+
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedWorkList = workList.map((work, i) =>
@@ -53,6 +60,9 @@ function WorkForm({ workList, setWorkList }) {
   }
 
   function handleDeleteWork(index) {
+    const itemToDelete = workList[index];
+    setDeletedItem(itemToDelete);
+
     // Create a new array without the deleted work
     const updatedWorkList = workList.filter(function (_, i) {
       return i !== index;
@@ -60,10 +70,40 @@ function WorkForm({ workList, setWorkList }) {
 
     // Update the state with the new array
     setWorkList(updatedWorkList);
+    setShowUndo(true);
+
+    // Clear the previous timeout if it exists
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+    }
+
+    // Set a new timeout to hide the undo message after 4 seconds
+    const timeoutId = setTimeout(() => {
+      setShowUndo(false);
+    }, 4000);
+    setUndoTimeout(timeoutId);
   }
+
+  const handleUndo = () => {
+    setWorkList([...workList, deletedItem]);
+    setDeletedItem(null);
+    setShowUndo(false);
+
+    // Clear the timeout when undo is clicked
+    if (undoTimeout) {
+      clearTimeout(undoTimeout);
+    }
+  };
 
   return (
     <Form>
+      {showUndo && (
+        <UndoNotification
+          deletedItem={deletedItem}
+          onUndo={handleUndo}
+          onTimeout={() => setShowUndo(false)}
+        />
+      )}
       {workList.map((work, index) => (
         <div key={index}>
           <Accordion
