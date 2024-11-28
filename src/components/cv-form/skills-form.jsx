@@ -6,6 +6,7 @@ import {
   IconButton,
   UndoMessage,
   UndoTimer,
+  AddButton,
 } from './CommonStyles';
 import { Trash, RotateCcw } from 'react-feather';
 import UndoNotification from './UndoNotification';
@@ -14,6 +15,17 @@ function SkillsForm({ skillList, setSkillList }) {
   const [deletedItem, setDeletedItem] = useState(null);
   const [showUndo, setShowUndo] = useState(false);
   const [undoTimeout, setUndoTimeout] = useState(null);
+
+  function handleAddSkill() {
+    // Create a new skill entry
+    const newSkill = { id: Date.now(), name: '' };
+
+    // Create a new array with the existing skillList and the new entry
+    const updatedSkillList = [...skillList, newSkill];
+
+    // Update the state with the new array
+    setSkillList(updatedSkillList);
+  }
 
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -76,6 +88,9 @@ function SkillsForm({ skillList, setSkillList }) {
           </IconButton>
         </Form>
       ))}
+      <AddButton type="button" onClick={handleAddSkill}>
+        Add Skill
+      </AddButton>
     </>
   );
 }
