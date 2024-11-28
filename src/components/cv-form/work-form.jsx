@@ -64,9 +64,7 @@ function WorkForm({ workList, setWorkList }) {
     setDeletedItem(itemToDelete);
 
     // Create a new array without the deleted work
-    const updatedWorkList = workList.filter(function (_, i) {
-      return i !== index;
-    });
+    const updatedWorkList = workList.filter((_, i) => i !== index);
 
     // Update the state with the new array
     setWorkList(updatedWorkList);
