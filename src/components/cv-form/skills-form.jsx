@@ -1,14 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import {
-  Form,
-  SmallInput,
-  IconButton,
-  UndoMessage,
-  UndoTimer,
-  AddButton,
-} from './CommonStyles';
-import { Trash, RotateCcw } from 'react-feather';
+import { Form, SmallInput, IconButton, AddButton } from './CommonStyles';
+import { Trash } from 'react-feather';
 import UndoNotification from './UndoNotification';
 
 function SkillsForm({ skillList, setSkillList }) {
