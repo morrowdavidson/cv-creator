@@ -98,6 +98,7 @@ export const TimerBar = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
+  border-radius: 0 0 4px 4px;
 `;
 
 export const UndoButton = styled.button`
