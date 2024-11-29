@@ -11,29 +11,14 @@ import {
   Heading,
   ActionButtons,
   LightButton,
+  UndoButton,
+  TimerBar,
 } from './AppStyles';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { Feather, RotateCcw } from 'react-feather';
-import styled from 'styled-components';
 
 const exampleInfo = { ...dwightInfo };
-
-const TimerBar = styled.div`
-  height: 2px;
-  background-color: #ff6666;
-  transition: width 1s linear;
-`;
-
-const UndoButton = styled.button`
-  background-color: #fde9e9;
-  color: #ff6666;
-  padding: 10px 15px;
-  margin: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-`;
 
 function App() {
   const [generalInfo, setGeneralInfo] = useState(exampleInfo.generalInfo);
@@ -81,20 +66,21 @@ function App() {
   }, [generalInfo, educationList, workList, skillList]);
 
   useEffect(() => {
-    let timerId;
-    if (showUndo) {
-      setTimer(5); // Set timer for 5 seconds
-      timerId = setInterval(() => {
-        setTimer((prev) => {
-          if (prev === 1) {
-            setShowUndo(false);
-            clearInterval(timerId);
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-    }
+    if (!showUndo) return;
+
+    setTimer(5); // Set timer for 5 seconds
+
+    const timerId = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 1) {
+          setShowUndo(false);
+          clearInterval(timerId);
+          return 0;
+        }
+        return prevTimer - 1;
+      });
+    }, 1000);
+
     return () => clearInterval(timerId);
   }, [showUndo]);
 
@@ -154,7 +140,9 @@ function App() {
               <UndoButton onClick={handleUndo}>
                 <RotateCcw size={12} />
                 Undo
-                <TimerBar style={{ width: `${(timer / 5) * 100}%` }} />
+                <TimerBar
+                  style={{ width: `${timer ? (timer / 5) * 100 : 100}%` }}
+                />
               </UndoButton>
             </div>
           )}
