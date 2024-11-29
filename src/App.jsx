@@ -76,7 +76,6 @@ function App() {
           clearInterval(timerId);
           return 0;
         }
-        console.log(prevTimer);
         return prevTimer - 1;
       });
     }, 1000);
