@@ -7,6 +7,8 @@ const UndoNotification = ({ deletedItem, onUndo, onTimeout }) => {
   const [timerWidth, setTimerWidth] = useState(100);
 
   useEffect(() => {
+    setTimerWidth(100);
+
     const intervalId = setInterval(() => {
       setTimerWidth((prevWidth) => Math.max(prevWidth - 2.5, 0));
     }, 100);
@@ -20,7 +22,7 @@ const UndoNotification = ({ deletedItem, onUndo, onTimeout }) => {
       clearInterval(intervalId);
       clearTimeout(timeoutId);
     };
-  }, [onTimeout]);
+  }, [deletedItem, onTimeout]);
 
   return (
     <UndoMessage>

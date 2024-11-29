@@ -65,24 +65,24 @@ function App() {
     });
   }, [generalInfo, educationList, workList, skillList]);
 
-  useEffect(() => {
-    if (!showUndo) return;
-
+  const startTimer = () => {
     setTimer(5); // Set timer for 5 seconds
+    setShowUndo(true);
 
     const timerId = setInterval(() => {
       setTimer((prevTimer) => {
-        if (prevTimer === 1) {
+        if (prevTimer <= 1) {
           setShowUndo(false);
           clearInterval(timerId);
           return 0;
         }
+        console.log(prevTimer);
         return prevTimer - 1;
       });
     }, 1000);
 
     return () => clearInterval(timerId);
-  }, [showUndo]);
+  };
 
   const setExampleInfo = () => {
     saveCurrentState();
@@ -90,7 +90,7 @@ function App() {
     setEducationList(exampleInfo.educationList);
     setWorkList(exampleInfo.workList);
     setSkillList(exampleInfo.skillList);
-    setShowUndo(true);
+    startTimer();
   };
 
   const clearInfo = () => {
@@ -104,7 +104,7 @@ function App() {
       phone: '',
       aboutMe: '<p></p>',
     });
-    setShowUndo(true);
+    startTimer();
   };
 
   const saveCurrentState = () => {
