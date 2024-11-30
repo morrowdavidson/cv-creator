@@ -11,8 +11,6 @@ import {
   Heading,
   ActionButtons,
   LightButton,
-  UndoButton,
-  TimerBar,
 } from './AppStyles';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
@@ -27,9 +25,6 @@ function App() {
   const [educationList, setEducationList] = useState(exampleInfo.educationList);
   const [workList, setWorkList] = useState(exampleInfo.workList);
   const [skillList, setSkillList] = useState(exampleInfo.skillList);
-  const [showUndo, setShowUndo] = useState(false);
-  const [previousState, setPreviousState] = useState({});
-  const [timer, setTimer] = useState(0);
 
   useEffect(() => {
     const savedCategories = [
@@ -67,35 +62,14 @@ function App() {
     });
   }, [generalInfo, educationList, workList, skillList]);
 
-  const startTimer = () => {
-    setTimer(5); // Set timer for 5 seconds
-    setShowUndo(true);
-
-    const timerId = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer <= 1) {
-          setShowUndo(false);
-          clearInterval(timerId);
-          return 0;
-        }
-        return prevTimer - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timerId);
-  };
-
   const setExampleInfo = () => {
-    saveCurrentState();
     setGeneralInfo(exampleInfo.generalInfo);
     setEducationList(exampleInfo.educationList);
     setWorkList(exampleInfo.workList);
     setSkillList(exampleInfo.skillList);
-    startTimer();
   };
 
   const clearInfo = () => {
-    saveCurrentState();
     setEducationList([]);
     setWorkList([]);
     setSkillList([]);
@@ -105,25 +79,8 @@ function App() {
       phone: '',
       aboutMe: '<p></p>',
     });
-    startTimer();
   };
 
-  const saveCurrentState = () => {
-    setPreviousState({
-      generalInfo,
-      educationList,
-      workList,
-      skillList,
-    });
-  };
-
-  const handleUndo = () => {
-    setGeneralInfo(previousState.generalInfo);
-    setEducationList(previousState.educationList);
-    setWorkList(previousState.workList);
-    setSkillList(previousState.skillList);
-    setShowUndo(false);
-  };
   const contentRef = useRef();
 
   const handlePrint = useReactToPrint({ contentRef });
@@ -136,17 +93,6 @@ function App() {
           CV Creator
         </Heading>
         <ActionButtons>
-          {showUndo && (
-            <div>
-              <UndoButton onClick={handleUndo}>
-                <RotateCcw size={12} />
-                Undo
-                <TimerBar
-                  style={{ width: `${timer ? (timer / 5) * 100 : 100}%` }}
-                />
-              </UndoButton>
-            </div>
-          )}
           <LightButton onClick={setExampleInfo}>Example Resume</LightButton>
           <LightButton onClick={clearInfo}>Clear Resume</LightButton>
           <Button onClick={handlePrint}>Print</Button>

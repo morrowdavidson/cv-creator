@@ -90,24 +90,3 @@ export const Heading = styled.h1`
 export const ActionButtons = styled.div`
   display: flex;
 `;
-
-export const TimerBar = styled.div`
-  height: 2px;
-  background-color: #ff6666;
-  transition: width 1s linear;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  border-radius: 0 0 4px 4px;
-`;
-
-export const UndoButton = styled.button`
-  background-color: #fde9e9;
-  color: #ff6666;
-  padding: 10px 15px;
-  margin: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  position: relative;
-`;
