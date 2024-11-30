@@ -37,7 +37,11 @@ const Button = styled.button`
   border-radius: 4px;
   padding: 5px;
   height: 15px;
-  background-color: transparent;å
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    color: #a442e3;
+  }
 `;
 
 function CvForm({

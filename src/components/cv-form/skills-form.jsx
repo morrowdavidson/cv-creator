@@ -1,16 +1,9 @@
 import PropTypes from 'prop-types';
 import { Form, SmallInput, IconButton, AddButton } from './CommonStyles';
-import { Trash, RotateCcw } from 'react-feather';
+import { Trash } from 'react-feather';
 import { toast } from 'react-toastify';
-
+import ToastMsg from './ToastMsg';
 function SkillsForm({ skillList, setSkillList }) {
-  const notify = (itemToDelete) =>
-    toast(
-      <IconButton type="button" onClick={handleUndoSkill(itemToDelete)}>
-        <RotateCcw size={16} /> Undo {itemToDelete.name} deletion
-      </IconButton>
-    );
-
   function handleAddSkill() {
     // Create a new skill entry
     const newSkill = { id: Date.now(), name: '' };
@@ -38,7 +31,7 @@ function SkillsForm({ skillList, setSkillList }) {
     notify(itemToDelete);
   };
 
-  const handleUndoSkill = (itemToDelete) => {
+  const handleUndo = (itemToDelete) => {
     return () => {
       setSkillList((prevSkillList) => {
         // Check if the item is already in the list to prevent duplicates
@@ -49,6 +42,14 @@ function SkillsForm({ skillList, setSkillList }) {
       });
     };
   };
+
+  const notify = (itemToDelete) =>
+    toast(
+      <ToastMsg
+        itemName={itemToDelete.name}
+        handleUndo={handleUndo(itemToDelete)}
+      />
+    );
 
   return (
     <>

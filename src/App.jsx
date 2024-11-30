@@ -167,6 +167,7 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
+        closeButton={false}
       />
     </>
   );

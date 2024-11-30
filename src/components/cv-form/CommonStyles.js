@@ -213,3 +213,27 @@ export const UndoTimer = styled.div`
   transition: width 0.1s linear;
   border-radius: 4px;
 `;
+
+export const ToastButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: #a442e3; /* Change color on hover if needed */
+  }
+  a {
+    text-decoration: none;
+    color: #c656fe;
+
+    }
+  }
+`;

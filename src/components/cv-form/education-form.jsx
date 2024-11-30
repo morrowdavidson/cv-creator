@@ -1,15 +1,9 @@
 import PropTypes from 'prop-types';
-import {
-  Form,
-  Button,
-  Input,
-  Label,
-  AddButton,
-  IconButton,
-} from './CommonStyles';
+import { Form, Button, Input, Label, AddButton } from './CommonStyles';
 import Accordion from '../Accordion';
-import { Trash, RotateCcw } from 'react-feather';
+import { Trash } from 'react-feather';
 import { toast } from 'react-toastify';
+import ToastMsg from './ToastMsg';
 
 function EducationForm({ educationList, setEducationList }) {
   const handleInputChange = (index, event) => {
@@ -19,13 +13,6 @@ function EducationForm({ educationList, setEducationList }) {
     );
     setEducationList(updatedEducationList);
   };
-
-  const notify = (itemToDelete) =>
-    toast(
-      <IconButton type="button" onClick={handleUndoEducation(itemToDelete)}>
-        <RotateCcw size={16} /> Undo {itemToDelete.name} deletion
-      </IconButton>
-    );
 
   const handleAddEducation = () => {
     const newEducation = {
@@ -47,7 +34,7 @@ function EducationForm({ educationList, setEducationList }) {
     notify(itemToDelete);
   };
 
-  const handleUndoEducation = (itemToDelete) => {
+  const handleUndo = (itemToDelete) => {
     return () => {
       setEducationList((prevEducationList) => {
         // Check if the item is already in the list to prevent duplicates
@@ -58,6 +45,14 @@ function EducationForm({ educationList, setEducationList }) {
       });
     };
   };
+
+  const notify = (itemToDelete) =>
+    toast(
+      <ToastMsg
+        itemName={itemToDelete.name}
+        handleUndo={handleUndo(itemToDelete)}
+      />
+    );
 
   return (
     <Form>

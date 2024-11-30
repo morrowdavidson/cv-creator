@@ -7,13 +7,13 @@ import {
   Label,
   ReactQuillWrapper,
   AddButton,
-  IconButton,
 } from './CommonStyles';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Accordion from '../Accordion';
-import { Trash, RotateCcw } from 'react-feather';
+import { Trash } from 'react-feather';
 import { toast } from 'react-toastify';
+import ToastMsg from './ToastMsg';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -30,13 +30,6 @@ function WorkForm({ workList, setWorkList }) {
     );
     setWorkList(updatedWorkList);
   };
-
-  const notify = (itemToDelete) =>
-    toast(
-      <IconButton type="button" onClick={handleUndoWork(itemToDelete)}>
-        <RotateCcw size={16} /> Undo {itemToDelete.name} deletion
-      </IconButton>
-    );
 
   const handleDescriptionChange = (index, value) => {
     const values = [...workList];
@@ -74,7 +67,7 @@ function WorkForm({ workList, setWorkList }) {
     notify(itemToDelete);
   }
 
-  const handleUndoWork = (itemToDelete) => {
+  const handleUndo = (itemToDelete) => {
     return () => {
       setWorkList((prevWorkList) => {
         // Check if the item is already in the list to prevent duplicates
@@ -85,6 +78,14 @@ function WorkForm({ workList, setWorkList }) {
       });
     };
   };
+
+  const notify = (itemToDelete) =>
+    toast(
+      <ToastMsg
+        itemName={itemToDelete.name}
+        handleUndo={handleUndo(itemToDelete)}
+      />
+    );
 
   return (
     <Form>
