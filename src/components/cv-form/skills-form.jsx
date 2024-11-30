@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { Form, SmallInput, IconButton, AddButton } from './CommonStyles';
 import { Trash, RotateCcw } from 'react-feather';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 function SkillsForm({ skillList, setSkillList }) {
   const notify = (itemToDelete) =>
@@ -53,19 +52,6 @@ function SkillsForm({ skillList, setSkillList }) {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-
       {skillList.map((skill, index) => (
         <Form key={index}>
           <SmallInput

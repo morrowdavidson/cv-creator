@@ -17,6 +17,8 @@ import {
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { Feather, RotateCcw } from 'react-feather';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const exampleInfo = { ...dwightInfo };
 
@@ -174,6 +176,18 @@ function App() {
           />
         </PrintWrapper>
       </FormPrintContainer>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 }

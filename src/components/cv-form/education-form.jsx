@@ -9,8 +9,7 @@ import {
 } from './CommonStyles';
 import Accordion from '../Accordion';
 import { Trash, RotateCcw } from 'react-feather';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 function EducationForm({ educationList, setEducationList }) {
   const handleInputChange = (index, event) => {
