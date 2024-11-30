@@ -1,15 +1,18 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { Form, Button, Input, Label, AddButton } from './CommonStyles';
+import {
+  Form,
+  Button,
+  Input,
+  Label,
+  AddButton,
+  IconButton,
+} from './CommonStyles';
 import Accordion from '../Accordion';
-import { Trash } from 'react-feather';
-import UndoNotification from './UndoNotification';
+import { Trash, RotateCcw } from 'react-feather';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function EducationForm({ educationList, setEducationList }) {
-  const [deletedItem, setDeletedItem] = useState(null);
-  const [showUndo, setShowUndo] = useState(false);
-  const [undoTimeout, setUndoTimeout] = useState(null);
-
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedEducationList = educationList.map((education, i) =>
@@ -17,6 +20,13 @@ function EducationForm({ educationList, setEducationList }) {
     );
     setEducationList(updatedEducationList);
   };
+
+  const notify = (itemToDelete) =>
+    toast(
+      <IconButton type="button" onClick={handleUndoEducation(itemToDelete)}>
+        <RotateCcw size={16} /> Undo {itemToDelete.name} deletion
+      </IconButton>
+    );
 
   const handleAddEducation = () => {
     const newEducation = {
@@ -32,43 +42,26 @@ function EducationForm({ educationList, setEducationList }) {
 
   const handleDeleteEducation = (index) => {
     const itemToDelete = educationList[index];
-    setDeletedItem(itemToDelete);
     const updatedEducationList = educationList.filter((_, i) => i !== index);
     setEducationList(updatedEducationList);
-    setShowUndo(true);
 
-    // Clear the previous timeout if it exists
-    if (undoTimeout) {
-      clearTimeout(undoTimeout);
-    }
-
-    // Set a new timeout to hide the undo message after 4 seconds
-    const timeoutId = setTimeout(() => {
-      setShowUndo(false);
-    }, 4000);
-    setUndoTimeout(timeoutId);
+    notify(itemToDelete);
   };
 
-  const handleUndo = () => {
-    setEducationList([...educationList, deletedItem]);
-    setDeletedItem(null);
-    setShowUndo(false);
-
-    // Clear the timeout when undo is clicked
-    if (undoTimeout) {
-      clearTimeout(undoTimeout);
-    }
+  const handleUndoEducation = (itemToDelete) => {
+    return () => {
+      setEducationList((prevEducationList) => {
+        // Check if the item is already in the list to prevent duplicates
+        if (!prevEducationList.includes(itemToDelete)) {
+          return [...prevEducationList, itemToDelete];
+        }
+        return prevEducationList;
+      });
+    };
   };
 
   return (
     <Form>
-      {showUndo && (
-        <UndoNotification
-          deletedItem={deletedItem}
-          onUndo={handleUndo}
-          onTimeout={() => setShowUndo(false)}
-        />
-      )}
       {educationList.map((education, index) => (
         <div key={index}>
           <Accordion
