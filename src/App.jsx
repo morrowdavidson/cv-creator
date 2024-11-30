@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import CvForm from './components/cv-form/cv-form.jsx';
 import CvPrint from './components/cv-print/cv-print.jsx';
 import dwightInfo from './data/dwightsInfo';
-import { IconButton } from './components/cv-form/CommonStyles';
+import { ToastButton } from './components/cv-form/CommonStyles';
 import {
   FormPrintContainer,
   FormWrapper,
@@ -29,16 +29,22 @@ function App() {
 
   const notifyExampleResume = (prevState) =>
     toast(
-      <IconButton type="button" onClick={handleUndoEvent(prevState)}>
-        <RotateCcw size={16} /> Undo Loading Example Resume
-      </IconButton>
+      <ToastButton type="button" onClick={handleUndoEvent(prevState)}>
+        <span>Example Resume Loaded</span>
+        <a>
+          <RotateCcw size={12} /> Undo
+        </a>
+      </ToastButton>
     );
 
   const notifyClearResume = (prevState) =>
     toast(
-      <IconButton type="button" onClick={handleUndoEvent(prevState)}>
-        <RotateCcw size={16} /> Undo Clearing Resume
-      </IconButton>
+      <ToastButton type="button" onClick={handleUndoEvent(prevState)}>
+        <span>Resume Cleared</span>
+        <a>
+          <RotateCcw size={12} /> Undo
+        </a>
+      </ToastButton>
     );
 
   useEffect(() => {
