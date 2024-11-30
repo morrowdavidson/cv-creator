@@ -207,7 +207,6 @@ export const shrink = keyframes`
 export const UndoTimer = styled.div`
   height: 2px;
   background-color: #ff6666;
-  width: ${(props) => props.width}%;
   position: absolute;
   bottom: 0;
   left: 0;

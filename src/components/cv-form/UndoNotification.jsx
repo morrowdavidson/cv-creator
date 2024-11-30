@@ -5,24 +5,31 @@ import { RotateCcw } from 'react-feather';
 
 const UndoNotification = ({ deletedItem, onUndo, onTimeout }) => {
   const [timerWidth, setTimerWidth] = useState(100);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setTimerWidth(100);
+    if (deletedItem) {
+      setIsVisible(true);
+      setTimerWidth(100);
 
-    const intervalId = setInterval(() => {
-      setTimerWidth((prevWidth) => Math.max(prevWidth - 2.5, 0));
-    }, 100);
+      const intervalId = setInterval(() => {
+        setTimerWidth((prevWidth) => Math.max(prevWidth - 2.5, 0));
+      }, 100);
 
-    const timeoutId = setTimeout(() => {
-      onTimeout();
-      clearInterval(intervalId);
-    }, 4000);
+      const timeoutId = setTimeout(() => {
+        onTimeout();
+        setIsVisible(false);
+        clearInterval(intervalId);
+      }, 4000);
 
-    return () => {
-      clearInterval(intervalId);
-      clearTimeout(timeoutId);
-    };
+      return () => {
+        clearInterval(intervalId);
+        clearTimeout(timeoutId);
+      };
+    }
   }, [deletedItem, onTimeout]);
+
+  if (!isVisible) return null;
 
   return (
     <UndoMessage>
@@ -30,7 +37,7 @@ const UndoNotification = ({ deletedItem, onUndo, onTimeout }) => {
       <IconButton type="button" onClick={onUndo}>
         <RotateCcw size={16} /> Undo
       </IconButton>
-      <UndoTimer width={timerWidth} />
+      <UndoTimer style={{ width: `${timerWidth}%` }} />
     </UndoMessage>
   );
 };
