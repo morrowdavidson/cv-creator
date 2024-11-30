@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import CvForm from './components/cv-form/cv-form.jsx';
 import CvPrint from './components/cv-print/cv-print.jsx';
 import dwightInfo from './data/dwightsInfo';
+import { IconButton } from './components/cv-form/CommonStyles';
 import {
   FormPrintContainer,
   FormWrapper,
@@ -15,7 +16,7 @@ import {
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { Feather, RotateCcw } from 'react-feather';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const exampleInfo = { ...dwightInfo };
@@ -25,6 +26,20 @@ function App() {
   const [educationList, setEducationList] = useState(exampleInfo.educationList);
   const [workList, setWorkList] = useState(exampleInfo.workList);
   const [skillList, setSkillList] = useState(exampleInfo.skillList);
+
+  const notifyExampleResume = (prevState) =>
+    toast(
+      <IconButton type="button" onClick={handleUndoEvent(prevState)}>
+        <RotateCcw size={16} /> Undo Loading Example Resume
+      </IconButton>
+    );
+
+  const notifyClearResume = (prevState) =>
+    toast(
+      <IconButton type="button" onClick={handleUndoEvent(prevState)}>
+        <RotateCcw size={16} /> Undo Clearing Resume
+      </IconButton>
+    );
 
   useEffect(() => {
     const savedCategories = [
@@ -67,6 +82,12 @@ function App() {
     setEducationList(exampleInfo.educationList);
     setWorkList(exampleInfo.workList);
     setSkillList(exampleInfo.skillList);
+    notifyExampleResume({
+      generalInfo,
+      educationList,
+      workList,
+      skillList,
+    });
   };
 
   const clearInfo = () => {
@@ -79,6 +100,19 @@ function App() {
       phone: '',
       aboutMe: '<p></p>',
     });
+    notifyClearResume({
+      generalInfo,
+      educationList,
+      workList,
+      skillList,
+    });
+  };
+
+  const handleUndoEvent = (prevState) => () => {
+    setGeneralInfo(prevState.generalInfo);
+    setEducationList(prevState.educationList);
+    setWorkList(prevState.workList);
+    setSkillList(prevState.skillList);
   };
 
   const contentRef = useRef();
