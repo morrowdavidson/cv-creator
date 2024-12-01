@@ -3,7 +3,8 @@ import { Form, SmallInput, IconButton, AddButton } from './CommonStyles';
 import { Trash } from 'react-feather';
 import { toast } from 'react-toastify';
 import ToastMsg from './ToastMsg';
-function SkillsForm({ skillList, setSkillList }) {
+
+const SkillsForm = ({ skillList, setSkillList }) => {
   function handleAddSkill() {
     // Create a new skill entry
     const newSkill = { id: Date.now(), name: '' };
@@ -72,7 +73,7 @@ function SkillsForm({ skillList, setSkillList }) {
       </AddButton>
     </>
   );
-}
+};
 
 SkillsForm.propTypes = {
   skillList: PropTypes.array.isRequired,
