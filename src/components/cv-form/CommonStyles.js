@@ -155,7 +155,7 @@ export const IconButton = styled.button`
     outline: none;
   }
 
-  &:hover ${Icon} {
+  &:hover {
     color: #a442e3; /* Change color on hover if needed */
   }
 `;
