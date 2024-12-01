@@ -163,7 +163,7 @@ function App() {
         </PrintWrapper>
       </FormPrintContainer>
       <ToastContainer
-        position="bottom-center"
+        position="top-center"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -173,7 +173,7 @@ function App() {
         draggable
         pauseOnHover
         theme="light"
-        closeButton={false}
+        // closeButton={false}
       />
     </>
   );
