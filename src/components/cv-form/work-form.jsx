@@ -22,7 +22,7 @@ const toolbarOptions = [
   ['clean'], // remove formatting button
 ];
 
-function WorkForm({ workList, setWorkList }) {
+const WorkForm = ({ workList, setWorkList }) => {
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedWorkList = workList.map((work, i) =>
@@ -139,7 +139,7 @@ function WorkForm({ workList, setWorkList }) {
       </AddButton>
     </Form>
   );
-}
+};
 
 WorkForm.propTypes = {
   workList: PropTypes.array.isRequired,

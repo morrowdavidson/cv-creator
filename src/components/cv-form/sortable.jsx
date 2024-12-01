@@ -16,7 +16,7 @@ import {
 
 import SortableItem from './SortableItem';
 
-function Sortable({ list, setList }) {
+const Sortable = ({ list, setList }) => {
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -52,7 +52,7 @@ function Sortable({ list, setList }) {
       </DndContext>
     </>
   );
-}
+};
 
 Sortable.propTypes = {
   list: PropTypes.arrayOf(

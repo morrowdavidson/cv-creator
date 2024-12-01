@@ -59,7 +59,7 @@ const Button = styled.button`
   }
 `;
 
-function CvForm({
+const CvForm = ({
   generalInfo,
   setGeneralInfo,
   educationList,
@@ -68,7 +68,7 @@ function CvForm({
   setWorkList,
   skillList,
   setSkillList,
-}) {
+}) => {
   const [isEducationSortable, setIsEducationSortable] = useState(false);
   const [isSkillsSortable, setIsSkillsSortable] = useState(false);
   const [isWorkSortable, setIsWorkSortable] = useState(false);
@@ -160,7 +160,7 @@ function CvForm({
       </SectionWrapper>
     </>
   );
-}
+};
 
 CvForm.propTypes = {
   generalInfo: PropTypes.object.isRequired,

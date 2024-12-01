@@ -21,7 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const exampleInfo = { ...dwightInfo };
 
-function App() {
+const App = () => {
   const [generalInfo, setGeneralInfo] = useState(exampleInfo.generalInfo);
   const [educationList, setEducationList] = useState(exampleInfo.educationList);
   const [workList, setWorkList] = useState(exampleInfo.workList);
@@ -177,6 +177,6 @@ function App() {
       />
     </>
   );
-}
+};
 
 export default App;
