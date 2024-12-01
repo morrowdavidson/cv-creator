@@ -5,7 +5,7 @@ import { Trash } from 'react-feather';
 import { toast } from 'react-toastify';
 import ToastMsg from './ToastMsg';
 
-function EducationForm({ educationList, setEducationList }) {
+const EducationForm = ({ educationList, setEducationList }) => {
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedEducationList = educationList.map((education, i) =>
@@ -97,7 +97,7 @@ function EducationForm({ educationList, setEducationList }) {
       </AddButton>
     </Form>
   );
-}
+};
 
 EducationForm.propTypes = {
   educationList: PropTypes.array.isRequired,

@@ -15,13 +15,13 @@ import {
   Work,
 } from './cvPrintStyles';
 
-function CvPrint({
+const CvPrint = ({
   generalInfo,
   educationList,
   workList,
   skillList,
   contentRef,
-}) {
+}) => {
   return (
     <>
       <CvPrintContainer>
@@ -104,7 +104,7 @@ function CvPrint({
       </CvPrintContainer>
     </>
   );
-}
+};
 
 CvPrint.propTypes = {
   generalInfo: PropTypes.shape({

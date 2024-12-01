@@ -1,15 +1,37 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import styled from 'styled-components';
+import { styled, css } from 'styled-components';
 import GeneralInfoForm from './general-info-form';
 import EducationForm from './education-form';
 import WorkForm from './work-form';
 import Skills from './skills-form';
 import { SectionWrapper } from './CommonStyles';
-import feather from 'feather-icons';
-import { useEffect } from 'react';
 import Sortable from './sortable';
+import { User, Book, Briefcase, Award } from 'react-feather';
+
+const sharedIconStyles = css`
+  width: 20px;
+  height: 20px;
+  color: #c656fe;
+  margin-bottom: -2px;
+  margin-right: 5px;
+`;
+
+const StyledUserIcon = styled(User)`
+  ${sharedIconStyles}
+`;
+
+const StyledBookIcon = styled(Book)`
+  ${sharedIconStyles}
+`;
+
+const StyledBriefcaseIcon = styled(Briefcase)`
+  ${sharedIconStyles}
+`;
+const StyledAwardIcon = styled(Award)`
+  ${sharedIconStyles}
+`;
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -22,13 +44,6 @@ const Header = styled.h2`
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margin */
   margin-bottom: 1em;
-`;
-const Icon = styled.i`
-  width: 20px; /* Adjust the width as needed */
-  height: 20px; /* Adjust the height as needed */
-  margin-bottom: -2px;
-  margin-right: 5px;
-  color: #c656fe;
 `;
 
 const Button = styled.button`
@@ -44,7 +59,7 @@ const Button = styled.button`
   }
 `;
 
-function CvForm({
+const CvForm = ({
   generalInfo,
   setGeneralInfo,
   educationList,
@@ -53,11 +68,7 @@ function CvForm({
   setWorkList,
   skillList,
   setSkillList,
-}) {
-  useEffect(() => {
-    feather.replace();
-  }, []);
-
+}) => {
   const [isEducationSortable, setIsEducationSortable] = useState(false);
   const [isSkillsSortable, setIsSkillsSortable] = useState(false);
   const [isWorkSortable, setIsWorkSortable] = useState(false);
@@ -80,7 +91,7 @@ function CvForm({
         <HeaderWrapper>
           <Header>
             {' '}
-            <Icon data-feather="user"></Icon>
+            <StyledUserIcon />
             Personal Information
           </Header>
         </HeaderWrapper>
@@ -92,7 +103,7 @@ function CvForm({
       <SectionWrapper>
         <HeaderWrapper>
           <Header>
-            <Icon data-feather="book"></Icon>
+            <StyledBookIcon />
             Education
           </Header>
           {educationList.length > 1 ? (
@@ -114,7 +125,7 @@ function CvForm({
       <SectionWrapper>
         <HeaderWrapper>
           <Header>
-            <Icon data-feather="award"></Icon>
+            <StyledAwardIcon />
             Skills
           </Header>
           {skillList.length > 1 ? (
@@ -132,7 +143,7 @@ function CvForm({
       <SectionWrapper>
         <HeaderWrapper>
           <Header>
-            <Icon data-feather="briefcase"></Icon>
+            <StyledBriefcaseIcon />
             Work Experience
           </Header>
           {workList.length > 1 ? (
@@ -149,7 +160,7 @@ function CvForm({
       </SectionWrapper>
     </>
   );
-}
+};
 
 CvForm.propTypes = {
   generalInfo: PropTypes.object.isRequired,
