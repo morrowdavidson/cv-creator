@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 export const Form = styled.form`
   width: 400px;
@@ -178,38 +178,30 @@ export const ReactQuillWrapper = styled.div`
     background-color: #fff;
   }
 `;
-export const UndoMessage = styled.div`
-  background-color: #fde9e9;
-  padding: 10px;
-  position: relative;
-  display: flex;
+
+export const ToastButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
   justify-content: space-between;
-  align-items: center;
-  border-radius: 4px;
-  font-size: 0.75em;
-  margin-bottom: 10px;
-  color: #ff6666;
+  width: 100%;
 
-  & > button {
-    color: #ff6666;
+  &:focus {
+    outline: none;
   }
-`;
 
-export const shrink = keyframes`
-  from {
-    width: 100%;
+  &:hover {
+    color: #a442e3;
+    a {
+      color: #a442e3;
+    }
   }
-  to {
-    width: 0;
-  }
-`;
 
-export const UndoTimer = styled.div`
-  height: 2px;
-  background-color: #ff6666;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transition: width 0.1s linear;
-  border-radius: 4px;
+  a {
+    text-decoration: none;
+    color: #c656fe;
+    width: 75px;
+  }
 `;

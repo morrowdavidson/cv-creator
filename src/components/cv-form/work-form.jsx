@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
 import {
   Form,
@@ -13,7 +12,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Accordion from '../Accordion';
 import { Trash } from 'react-feather';
-import UndoNotification from './UndoNotification';
+import { toast } from 'react-toastify';
+import ToastMsg from './ToastMsg';
 
 // Define custom toolbar options
 const toolbarOptions = [
@@ -23,10 +23,6 @@ const toolbarOptions = [
 ];
 
 function WorkForm({ workList, setWorkList }) {
-  const [deletedItem, setDeletedItem] = useState(null);
-  const [showUndo, setShowUndo] = useState(false);
-  const [undoTimeout, setUndoTimeout] = useState(null);
-
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
     const updatedWorkList = workList.map((work, i) =>
@@ -61,47 +57,38 @@ function WorkForm({ workList, setWorkList }) {
 
   function handleDeleteWork(index) {
     const itemToDelete = workList[index];
-    setDeletedItem(itemToDelete);
 
     // Create a new array without the deleted work
     const updatedWorkList = workList.filter((_, i) => i !== index);
 
     // Update the state with the new array
     setWorkList(updatedWorkList);
-    setShowUndo(true);
 
-    // Clear the previous timeout if it exists
-    if (undoTimeout) {
-      clearTimeout(undoTimeout);
-    }
-
-    // Set a new timeout to hide the undo message after 4 seconds
-    const timeoutId = setTimeout(() => {
-      setShowUndo(false);
-    }, 4000);
-    setUndoTimeout(timeoutId);
+    notify(itemToDelete);
   }
 
-  const handleUndo = () => {
-    setWorkList([...workList, deletedItem]);
-    setDeletedItem(null);
-    setShowUndo(false);
-
-    // Clear the timeout when undo is clicked
-    if (undoTimeout) {
-      clearTimeout(undoTimeout);
-    }
+  const handleUndo = (itemToDelete) => {
+    return () => {
+      setWorkList((prevWorkList) => {
+        // Check if the item is already in the list to prevent duplicates
+        if (!prevWorkList.includes(itemToDelete)) {
+          return [...prevWorkList, itemToDelete];
+        }
+        return prevWorkList;
+      });
+    };
   };
+
+  const notify = (itemToDelete) =>
+    toast(
+      <ToastMsg
+        itemName={itemToDelete.name}
+        handleUndo={handleUndo(itemToDelete)}
+      />
+    );
 
   return (
     <Form>
-      {showUndo && (
-        <UndoNotification
-          deletedItem={deletedItem}
-          onUndo={handleUndo}
-          onTimeout={() => setShowUndo(false)}
-        />
-      )}
       {workList.map((work, index) => (
         <div key={index}>
           <Accordion
