@@ -34,8 +34,8 @@ describe('CVForm component', () => {
 
   it('has values for education list', () => {
     const mockEducationList = [
-      { school: 'ABC University', degree: 'B.Sc', year: '2020' },
-      { school: 'XYZ College', degree: 'M.Sc', year: '2022' },
+      { name: 'ABC University', degree: 'B.Sc', year: '2020' },
+      { name: 'XYZ College', degree: 'M.Sc', year: '2022' },
     ];
 
     render(
@@ -62,8 +62,8 @@ describe('CVForm component', () => {
 
   it('has values for work list', () => {
     const mockWorkList = [
-      { company: 'Company A', title: 'Developer', date: '2018-2020' },
-      { company: 'Company B', title: 'Senior Dev', date: '2020-2022' },
+      { name: 'Company A', title: 'Developer', date: '2018-2020' },
+      { name: 'Company B', title: 'Senior Dev', date: '2020-2022' },
     ];
 
     render(
@@ -89,7 +89,7 @@ describe('CVForm component', () => {
   });
 
   it('has values for skill list', () => {
-    const mockSkillList = [{ skill: 'JavaScript' }, { skill: 'React' }];
+    const mockSkillList = [{ name: 'JavaScript' }, { name: 'React' }];
 
     render(
       <CvForm
@@ -111,8 +111,8 @@ describe('CVForm component', () => {
 
   it('adds a new education entry when "Add Education" button is clicked', () => {
     const mockEducationList = [
-      { school: 'ABC University', degree: 'B.Sc', year: '2020' },
-      { school: 'XYZ College', degree: 'M.Sc', year: '2022' },
+      { name: 'ABC University', degree: 'B.Sc', year: '2020' },
+      { name: 'XYZ College', degree: 'M.Sc', year: '2022' },
     ];
 
     const setEducationList = vi.fn();
@@ -158,8 +158,8 @@ describe('CVForm component', () => {
 
   it('adds a new work entry when "Add Work Experience" button is clicked', () => {
     const mockWorkList = [
-      { company: 'Company A', title: 'Developer', date: '2018-2020' },
-      { company: 'Company B', title: 'Senior Dev', date: '2020-2022' },
+      { name: 'Company A', title: 'Developer', date: '2018-2020' },
+      { name: 'Company B', title: 'Senior Dev', date: '2020-2022' },
     ];
 
     const setWorkList = vi.fn();
