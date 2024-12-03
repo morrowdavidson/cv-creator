@@ -1,9 +1,17 @@
-# React + Vite
+# CV Creator
+CV Creator is a React application that allows users to create, edit, and print their resumes. The app provides a user-friendly interface to input personal information, education history, work experience, and skills. Users can also load example resumes, clear the form, and undo recent actions.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# cv-creator
+## Features
+Create and edit personal information, education history, work experience, and skills.
+Load example resumes.
+Clear the form to start fresh.
+Undo recent actions.
+Print the resume.
+Responsive design.
+### Technologies Used
+- React
+- styled-components
+- react-feather
+- react-toastify
+- react-to-print
+- PropTypes
